@@ -34,14 +34,10 @@ export const sessionCheck = () => {
 export const postLoginUser = (ele) => {
   return async (disp) => {
     const res = await axios.post(`${BASEURL}/login`, ele, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      redentials: "include",
-      // withCredentials: true,
+      withCredentials: true,
     });
     console.log(res);
-    disp({ type: POSTLOGIN, data: "eeeee" });
+    disp({ type: POSTLOGIN, data: res });
   };
 };
 export const sessionLogOut = () => {

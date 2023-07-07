@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 const Login1 = () => {
   const dispatch = useDispatch();
-  axios.default.withCredentials = true;
+  // axios.default.withCredentials = true;
 
   const islogin = useSelector((state) => state.loginOrRegister);
   const initialValues = {
