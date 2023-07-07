@@ -102,6 +102,10 @@ const DoctorList = () => {
   const divRef = useRef();
   const menuRef = useRef();
   const [een, seteen] = useState(false);
+  // const oncl = (e) => {
+  //   const doc = { ...doctors };
+  //   console.log(e);
+  // };
   /* 
    // useEffect(() => {
   // let handler = (e) => {
@@ -368,6 +372,7 @@ const DoctorList = () => {
                         style={{ opacity: "0.8", margin: "0 15px" }}
                       >
                         <FaUserAlt
+                          // onClick={(e)={oncl(e)}
                           style={{
                             fontSize: "18px",
                           }}

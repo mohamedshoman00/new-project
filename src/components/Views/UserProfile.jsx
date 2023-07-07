@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, Col, Form } from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import doctorImg from "../../assets/images/doctor-3.jpg";
 import {
   FaFacebookSquare,
@@ -11,14 +11,14 @@ const UserProfile = () => {
   return (
     <>
       <div
-        className="d-flex w-100 py-5"
+        className="d-flex w-100 py-5 flex-wrap"
         style={{
           backgroundColor: "#f1f5fc",
           padding: "15px",
         }}
       >
         <Col lg={8} md={8}>
-          <Card className="p-2">
+          <Card className="px-2 pt-2" style={{ paddingBottom: "6rem" }}>
             <div
               className="d-flex align-items-center justify-content-between"
               style={{ borderBottom: "1px solid rgba(0, 0, 0, .1)" }}
@@ -42,27 +42,20 @@ const UserProfile = () => {
                 <Form.Label>Phone Number</Form.Label>
                 <Form.Control type="text" placeholder="Phone Number" />
               </Form.Group>
-              <Form.Group className="col-lg-6" controlId="nationalID">
+              {/* <Form.Group className="col-lg-6" controlId="nationalID">
                 <Form.Label>National ID</Form.Label>
                 <Form.Control type="text" placeholder="National ID" />
-              </Form.Group>
-              <Form.Group className="col-lg-5" controlId="Address">
+              </Form.Group> */}
+              {/* <Form.Group className="col-lg-5" controlId="Address">
                 <Form.Label>Address</Form.Label>
                 <Form.Control type="text" placeholder="Address" />
-              </Form.Group>
-              <Form.Group className="col-lg-6" controlId="currentPassword">
-                <Form.Label>Current Password</Form.Label>
-                <Form.Control type="Password" placeholder="Current Password" />
-              </Form.Group>
-              <Form.Group className="col-lg-5" controlId="password">
-                <Form.Label>New Password</Form.Label>
-                <Form.Control type="Password" placeholder="New Password" />
-              </Form.Group>
-              <Form.Group className="col-lg-6" controlId="dateOfBirth">
+              </Form.Group> */}
+
+              {/* <Form.Group className="col-lg-6" controlId="dateOfBirth">
                 <Form.Label>Date of Birth</Form.Label>
                 <Form.Control type="date" placeholder="Date of Birth" />
-              </Form.Group>
-              <Form.Group className="col-lg-5 text-end">
+              </Form.Group> */}
+              <Form.Group className="col-lg-11 text-end">
                 <div
                   className="d-flex align-items-end justify-content-end"
                   style={{ height: "70px" }}
@@ -136,6 +129,67 @@ const UserProfile = () => {
             </div>
           </Card>
         </Col>
+        <Row className="ps-3 w-100">
+          <Card className="p-2 my-4">
+            <div
+              className="d-flex align-items-center justify-content-between"
+              style={{ borderBottom: "1px solid rgba(0, 0, 0, .1)" }}
+            >
+              <h3 className="p-3">Update Password</h3>
+            </div>
+            {/* <div
+                className="d-flex align-items-center justify-content-between"
+                style={{ borderBottom: "1px solid rgba(0, 0, 0,.1)" }}
+              >
+                <h3 className="p-3">My Doctors</h3>
+              </div> */}
+            <Form
+              className="p-4 d-flex flex-wrap align-items-center  gap-4"
+              style={{
+                // flex-wrap: nowrap;
+                alignItems: " center",
+                flexDirection: "row",
+                alignContent: "flex-end",
+                justifyContent: "space-between",
+              }}
+            >
+              <Form.Group className="col-lg-6" controlId="fname">
+                <Form.Label>Carrant Password </Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter Carrant Password"
+                />
+              </Form.Group>
+              <Form.Group className="col-lg-6" controlId="fname">
+                <Form.Label>New PassWord</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter New PassWord"
+                />
+              </Form.Group>
+              <Form.Group className="col-lg-6" controlId="fname">
+                <Form.Label>Confirm New PassWord</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirm New PassWord"
+                />
+              </Form.Group>
+              <div className="d-flex gap-4  " style={{ height: "70px" }}>
+                <Button
+                  variant="success"
+                  style={{
+                    color: "#fff",
+                    width: "150px",
+                    height: "50px",
+                    fontSize: "20px",
+                  }}
+                >
+                  Update
+                </Button>
+              </div>
+            </Form>
+          </Card>
+        </Row>
       </div>
     </>
   );

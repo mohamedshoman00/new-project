@@ -7,7 +7,15 @@ import background1 from "../assets/images/background1.jpg";
 import SignUp2 from "../components/Login/SignUp2";
 import Login1 from "../components/Login/Login1";
 import MultiSignUp from "../components/Login/MultiSignUp";
+import { postLoginUser } from "../redux/actions/appAction";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 const FormLogin = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // dispatch(postLoginUser());
+  }, []);
+
   return (
     <>
       <Container

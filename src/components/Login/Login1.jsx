@@ -3,7 +3,11 @@ import * as Yup from "yup";
 import { Button, Card, Container, Col } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleLogin } from "../../redux/actions/appAction";
+import {
+  postLoginUser,
+  sessionCheck,
+  toggleLogin,
+} from "../../redux/actions/appAction";
 import { Field, Form, Formik } from "formik";
 import { TextField } from "formik-material-ui";
 import { motion } from "framer-motion";
@@ -33,9 +37,12 @@ const Login1 = () => {
     },
   ];
   const nav = useNavigate();
+
   const handleS = (e) => {
     console.log(e);
-    nav("/admin");
+    dispatch(postLoginUser(e));
+    // dispatch(sessionCheck());
+    nav("/", { replace: true });
   };
   return (
     <>
@@ -94,6 +101,7 @@ const Login1 = () => {
                         component={TextField}
                         label={e.label}
                         variant="standard"
+                        // disabled={isSubmitting}
                       />
                     ))}
                     <Button
@@ -103,6 +111,7 @@ const Login1 = () => {
                       style={{
                         color: "#fff",
                       }}
+                      disabled={isSubmitting}
                     >
                       Login
                     </Button>

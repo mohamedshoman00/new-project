@@ -1,4 +1,14 @@
-import { ALLDATA, TOGGLE } from "../types/type";
+import axios from "axios";
+import {
+  ALLDATA,
+  BASEURL,
+  GETUSER,
+  LOGIN,
+  LOGOUT,
+  POSTLOGIN,
+  SESSIONCHECK,
+  TOGGLE,
+} from "../types/type";
 
 export const logData = () => {
   return {
@@ -11,5 +21,41 @@ export const logData = () => {
 export const toggleLogin = () => {
   return {
     type: TOGGLE,
+  };
+};
+
+export const sessionCheck = () => {
+  return async (disp) => {
+    const res = await axios.get(`${BASEURL}/sessioncheck`);
+    disp({ type: SESSIONCHECK, status: res.status });
+  };
+};
+
+export const postLoginUser = (ele) => {
+  return async (disp) => {
+    const res = await axios.post(`${BASEURL}/login`, ele, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redentials: "include",
+      // withCredentials: true,
+    });
+    console.log(res);
+    disp({ type: POSTLOGIN, data: "eeeee" });
+  };
+};
+export const sessionLogOut = () => {
+  return async (disp) => {
+    const res = await axios.get(`${BASEURL}/logout`);
+    console.log(res);
+    disp({ type: LOGOUT, data: "123" });
+  };
+};
+
+export const getAdminAcc = () => {
+  return async (disp) => {
+    const res = await axios.get(`${BASEURL}/admin`);
+    console.log(res);
+    // disp({ type: GETUSER, data: res.data });
   };
 };

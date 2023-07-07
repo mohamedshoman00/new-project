@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import { Button, Col, Container, Row, Form } from "react-bootstrap";
 import "../../index.css";
 
-const DoctorTimeTable = () => {
+const DoctorTimeTableUser = () => {
   const [docdata, setdocdata] = useState([
     {
       id: 0,
@@ -95,7 +95,7 @@ const DoctorTimeTable = () => {
               borderBottom: "1px solid rgba(0, 0, 0, .1)",
             }}
           >
-            <h4 className="p-3">Doctor Time Table</h4>
+            <h4 className="p-3">Add Schedule</h4>
           </div>
 
           <Form onSubmit={onsub} className="formm p-3 px-5  ">
@@ -175,4 +175,4 @@ const DoctorTimeTable = () => {
   );
 };
 
-export default DoctorTimeTable;
+export default DoctorTimeTableUser;

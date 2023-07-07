@@ -12,44 +12,27 @@ import {
 } from "react-icons/fa";
 import { BiNotepad } from "react-icons/bi";
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { getAdminAcc } from "../redux/actions/appAction";
 
-const Admin = () => {
+const User = () => {
   const menu = [
     {
-      path: "/admin/user-profile",
-      name: "User profile",
+      path: "/user/user-profile",
+      name: "Doctor Profile",
       icon: <FaUserCircle />,
-    },
-    {
-      path: "/admin/doctor",
-      name: "Doctors List",
-      icon: <FaStethoscope />,
-    },
-    {
-      path: "/admin/patient",
-      name: "Patients List",
-      icon: <FaListAlt />,
     },
 
     {
-      path: "/admin/doctor-time-table",
+      path: "/user/doctor-time-table",
       name: "Doctor TimeTable",
       icon: <BiNotepad />,
     },
     {
-      path: "/admin/appointment-list",
+      path: "/user/appointment-list",
       name: "Appointment List",
       icon: <FaCheckSquare />,
     },
   ];
   const [isOpen, setIsOpen] = useState(true);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAdminAcc());
-  }, []);
   return (
     <>
       <div className="d-flex" style={{ position: "relative" }}>
@@ -73,4 +56,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default User;
