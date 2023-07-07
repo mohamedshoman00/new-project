@@ -11,8 +11,11 @@ import {
 import { Field, Form, Formik } from "formik";
 import { TextField } from "formik-material-ui";
 import { motion } from "framer-motion";
+import axios from "axios";
 const Login1 = () => {
   const dispatch = useDispatch();
+  axios.default.withCredentials = true;
+
   const islogin = useSelector((state) => state.loginOrRegister);
   const initialValues = {
     email: "",
