@@ -8,9 +8,12 @@ import {
 import { MdClear } from "react-icons/md";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { sessionLogOut } from "../../redux/actions/appAction";
 function AdminNavbar(props) {
   const [searchValue, setSearchValue] = useState("");
   const nav = useNavigate();
+  const dispatch = useDispatch();
   return (
     <Navbar
       className="col-12 justify-content-start"
@@ -72,7 +75,8 @@ function AdminNavbar(props) {
           <Button
             variant="secondary"
             onClick={() => {
-              nav("/login");
+              dispatch(sessionLogOut());
+              nav(`/`,{replace:true});
             }}
           >
             LogOut

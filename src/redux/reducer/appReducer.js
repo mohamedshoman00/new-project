@@ -16,7 +16,7 @@ export const appReducer = (state = Initial, action) => {
     case POSTLOGIN:
       return { ...state, loginStatus: action.status };
     case LOGOUT:
-      return { ...state, user: action.data };
+      return { ...state, loginStatus: action.status };
     // case ALLDATA:
     //   return { name: action.data, age: action.age };
     case TOGGLE:
