@@ -45,9 +45,7 @@ export const postLoginUser = (ele) => {
 };
 export const sessionLogOut = () => {
   return async (disp) => {
-    const res = await axios.get(`${BASEURL}/logout`,{
-      withCredentials: true,
-    });
+    const res = await axios.get(`${BASEURL}/logout`);
     console.log(res);
     sessionCheck();
     disp({ type: LOGOUT, status: res.status });
