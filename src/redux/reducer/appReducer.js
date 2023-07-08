@@ -8,7 +8,7 @@ import {
   TOGGLE,
 } from "../types/type";
 
-const Initial = { loginOrRegister: true, user: ``, loginStatus: ``, admin: [] };
+const Initial = { loginOrRegister: true, user: ``, loginStatus: 203, admin: [] };
 export const appReducer = (state = Initial, action) => {
   switch (action.type) {
     case SESSIONCHECK:

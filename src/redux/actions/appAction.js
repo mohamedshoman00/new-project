@@ -24,10 +24,10 @@ export const toggleLogin = () => {
   };
 };
 
-export const sessionCheck = (e) => {
+export const sessionCheck = () => {
   return async (disp) => {
-    // const res = await axios.get(`${BASEURL}/sessioncheck`);
-    disp({ type: SESSIONCHECK, status: e });
+    const res = await axios.get(`${BASEURL}/sessioncheck`);
+    disp({ type: SESSIONCHECK, status: res.status });
   };
 };
 
