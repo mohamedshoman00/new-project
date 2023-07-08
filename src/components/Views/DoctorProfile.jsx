@@ -18,10 +18,7 @@ const DoctorProfile = () => {
     setdate(date);
     console.log(date);
   };
-  const dispatch = useDispatch();
-  useEffect(()=> {
-    dispatch(getDoctorData());
-  },[])
+
   return (
     <>
       <Container fluid>

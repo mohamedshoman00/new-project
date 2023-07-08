@@ -12,8 +12,15 @@ import {
 } from "react-icons/fa";
 import { BiNotepad } from "react-icons/bi";
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getDoctorData } from "../redux/actions/appAction";
 
 const User = () => {
+  const dispatch = useDispatch();
+  useEffect(()=> {
+    dispatch(getDoctorData());
+  },[])
   const menu = [
     {
       path: "/user/user-profile",
