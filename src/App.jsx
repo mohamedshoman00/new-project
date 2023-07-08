@@ -33,6 +33,7 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { BASEURL } from "./redux/types/type";
 import NotFound from "./components/NotFound";
+import DoctorProfile from "./components/Views/DoctorProfile";
 function App() {
   const dispatch = useDispatch();
   const checkUser = useSelector((state) => state.loginStatus);
@@ -75,7 +76,7 @@ function App() {
               path="/user"
               element={<Navigate to="/user/user-profile" replace />}
             />
-            <Route path="/user/user-profile" element={<Doctors_profile />} />
+            <Route path="/user/user-profile" element={<DoctorProfile />} />
 
             <Route
               path="/user/doctor-time-table"
