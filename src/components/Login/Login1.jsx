@@ -132,7 +132,7 @@ const Login1 = () => {
                   <Form
                     className="d-flex flex-wrap justify-content-between text-center p-3 gap-2"
                     style={{ width: "370px" }}
-                    // onSubmit={handleSubmit}
+                    onSubmit={handleSubmit}
                   >
                     {fields.map((e, i) => (
                       <Field
