@@ -49,6 +49,7 @@ export const sessionLogOut = () => {
       withCredentials: true,
     });
     console.log(res);
+    sessionCheck();
     disp({ type: LOGOUT, status: res.status });
   };
 };
