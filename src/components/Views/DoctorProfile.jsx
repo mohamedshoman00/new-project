@@ -127,7 +127,7 @@ const userData = useSelector(state=>state.doctorData);
                     style={{ width: `94%`, outline: "none" }}
                   >{userData && userData.shortBiography}</textarea>
                 </Form.Group>
-                <Form.Group className="col-lg-12" controlId="DoctorImg">
+                <Form.Group className="col-lg-12" controlId="gender">
                   <Form.Label>Gender</Form.Label>
                   {/* {userData.gender ==="male"? (<>
                     <Form.Check
@@ -163,7 +163,7 @@ const userData = useSelector(state=>state.doctorData);
               /></>)} */}
                    <Form.Check
                     disabled
-                    checked 
+                    checked ={userData.gender==="male"}
                     type="radio"
                     id="default-radio-male"
                     label="Male"
@@ -171,6 +171,7 @@ const userData = useSelector(state=>state.doctorData);
                   />
                   <Form.Check
                     disabled
+                    checked ={userData.gender==="female"}
                     type="radio"
                     id="default-radio-female"
                     label="Female"
