@@ -53,8 +53,8 @@ const Login1 = () => {
     // console.log(data);
     console.log(e);
     dispatch(postLoginUser(e));
-    dispatch(sessionCheck());
-    window.location.reload();
+    
+    // window.location.reload();
     nav("../",{replace:true});
     // console.log(location);
     // const newLocation = {...location , pathname:"/"};
