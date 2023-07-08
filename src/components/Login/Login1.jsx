@@ -48,22 +48,22 @@ const Login1 = () => {
   const nav = useNavigate();
   // const checkUser = useSelector(state=>state.loginStatus);
 
-  const handleS = async (e) => {
+  const handleS = (e) => {
     // e.preventDefault();
     // const data = {email:emailRef.current,password: passwordRef.current};
     // console.log(data);
-    console.log(e);
-    try {
+    // console.log(e);
+    // try {
       // Dispatch the first function and wait for it to complete
-      await dispatch(postLoginUser(e));
+     dispatch(postLoginUser(e));
       // Dispatch the second function
-      window.location.reload();
-      window.location.replace("/");
-      dispatch(sessionCheck());
-      nav("../",{replace:true});
-    } catch (error) {
-      console.log(error);
-    }
+      // window.location.reload();
+      // window.location.replace("/");
+      // dispatch(sessionCheck());
+      // nav("../",{replace:true});
+    // } catch (error) {
+    //   console.log(error);
+    // }
     ;
     // window.location.reload();
     // console.log(location);
