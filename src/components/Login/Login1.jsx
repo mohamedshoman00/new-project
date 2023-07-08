@@ -48,14 +48,15 @@ const Login1 = () => {
   const nav = useNavigate();
   // const checkUser = useSelector(state=>state.loginStatus);
 
-  const handleS = (e) => {
-    e.preventDefault();
+  const handleSubmit  = (e) => {
+    // event.preventDefault();
     // const data = {email:emailRef.current,password: passwordRef.current};
     // console.log(data);
     // console.log(e);
     // try {
       // Dispatch the first function and wait for it to complete
-     dispatch(postLoginUser({email:"www@www.com",password:"wwwwww"}));
+    //  dispatch(postLoginUser({email:"www@www.com",password:"wwwwww"}));
+     dispatch(postLoginUser(e));
       // Dispatch the second function
       // window.location.reload();
       // window.location.replace("/");
@@ -117,7 +118,7 @@ const Login1 = () => {
               <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema1}
-                // onSubmit={handleS}
+                onSubmit={handleSubmit}
               >
                 {({
                   values,
@@ -125,13 +126,13 @@ const Login1 = () => {
                   touched,
                   handleChange,
                   handleBlur,
-                  handleSubmit,
+                  // handleSubmit,
                   isSubmitting,
                 }) => (
                   <Form
                     className="d-flex flex-wrap justify-content-between text-center p-3 gap-2"
                     style={{ width: "370px" }}
-                    onSubmit={handleS}
+                    // onSubmit={handleSubmit}
                   >
                     {fields.map((e, i) => (
                       <Field
