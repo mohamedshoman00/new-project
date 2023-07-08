@@ -32,6 +32,7 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { BASEURL } from "./redux/types/type";
+import NotFound from "./components/NotFound";
 function App() {
   const dispatch = useDispatch();
   const checkUser = useSelector((state) => state.loginStatus);
@@ -97,7 +98,7 @@ function App() {
       );
     }else
     {
-      return( <Route path="/" element={<ForgotPassword1 />}/>)
+      return( <Route path="/" element={<NotFound />}/>)
     }
   };
   useEffect(() => {
