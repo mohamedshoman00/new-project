@@ -27,9 +27,7 @@ export const toggleLogin = () => {
 
 export const sessionCheck = () => {
   return async (disp) => {
-    const res = await axios.get(`${BASEURL}/sessioncheck`, {
-      withCredentials: true,
-    });
+    const res = await axios.get(`${BASEURL}/sessioncheck`);
     disp({ type: SESSIONCHECK, status: res.status });
   };
 };
