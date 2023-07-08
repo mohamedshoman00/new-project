@@ -41,9 +41,9 @@ function App() {
   const RoutesApp = () => {
     if (checkUser === 201) {
       return (
-        <>     <Route path="*" element={<Navigate to="/" replace />}/>
+        <>     <Route path="*" element={<Navigate to="/admin" replace />}/>
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
-          <Route path="/" element={<Navigate to="/admin" replace />} />
+          {/* <Route path="/" element={<Navigate to="/admin" replace />} /> */}
           <Route path="/admin" element={<Admin />}>
             <Route
               path="/admin"
@@ -67,9 +67,9 @@ function App() {
     } else if (checkUser === 200) {
       return (
         <>
-             <Route path="*" element={<Navigate to="/" replace />}/>
+             <Route path="*" element={<Navigate to="/user" replace />}/>
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
-          <Route path="/" element={<Navigate to="/user" replace />} />
+          {/* <Route path="/" element={<Navigate to="/user" replace />} /> */}
           <Route path="/user" element={<User />}>
             <Route
               path="/user"
@@ -91,8 +91,8 @@ function App() {
     } else if (checkUser === 203) {
       return (
         <>
-          <Route path="*" element={<Navigate to="/" replace />}/>
-          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="*" element={<Navigate to="/login" replace />}/>
+          {/* <Route path="/" element={<Navigate to="/login" replace />} /> */}
           <Route path="/login" element={<FormLogin />} />
           <Route path="forgot-password" element={<ForgotPassword1 />} />
         </>
