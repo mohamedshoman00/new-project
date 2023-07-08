@@ -127,7 +127,10 @@ function App() {
           pauseOnHover
           theme="colored"
         />
-        <Routes>{RoutesApp()}</Routes>
+        <Routes>
+{checkUser === "200" ? (<><h2>admin</h2></>  ): (checkUser === "201") ?<><h2>User</h2></> : (checkUser=== "203") ? <><h2>login</h2></>:<><h2>Not Found</h2></>}
+
+        </Routes>
       </AnimatePresence>
     </>
   );

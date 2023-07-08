@@ -56,6 +56,8 @@ const Login1 = () => {
     dispatch(sessionCheck(`200`));
     // nav("../", { replace: true });
     console.log(location);
+    // const newLocation = {...location , pathname:"/"};
+    // history.pushState("/");
     // if(checkUser===`200`)
     // else if (checkUser === `201`)
     // nav("../admin", { replace: true });
