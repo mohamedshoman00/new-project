@@ -39,7 +39,7 @@ export const postLoginUser = (ele) => {
     });
     // sessionCheck();
     console.log(res);
-    disp({ type: POSTLOGIN, data: res.status });
+    disp({ type: POSTLOGIN, status: res.status });
   };
 };
 export const sessionLogOut = () => {
