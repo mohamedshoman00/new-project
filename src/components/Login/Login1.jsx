@@ -48,7 +48,7 @@ const Login1 = () => {
   const checkUser = useSelector(state=>state.loginStatus);
   const handleS = (e) => {
     e.preventDefault();
-    const data = {email:emailRef.current.value,password: passwordRef.current.value};
+    const data = {email:emailRef.current,password: passwordRef.current};
     console.log(data);
     // dispatch(postLoginUser());
     // dispatch(sessionCheck(`200`));
