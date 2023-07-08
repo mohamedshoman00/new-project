@@ -61,7 +61,7 @@ const Login1 = () => {
       // window.location.reload();
       // window.location.replace("/");
       // dispatch(sessionCheck());
-      nav("/",{replace:true});
+      nav("../",{replace:true});
     // } catch (error) {
     //   console.log(error);
     // }
