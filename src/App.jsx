@@ -90,10 +90,10 @@ function App() {
     } else if (checkUser === "203") {
       return (
         <>
-        
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<FormLogin />} />
           <Route path="forgot-password" element={<ForgotPassword1 />} />
+        <Route path="*" element={<NotFound />}/>
         </>
       );
     }else
