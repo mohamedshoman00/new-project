@@ -56,8 +56,9 @@ const Login1 = () => {
     try {
       // Dispatch the first function and wait for it to complete
       await dispatch(postLoginUser(e));
-
       // Dispatch the second function
+      window.location.reload();
+      window.location.replace("/");
       dispatch(sessionCheck());
       nav("../",{replace:true});
     } catch (error) {
