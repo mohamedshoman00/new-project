@@ -2,6 +2,7 @@ import {
   ALLDATA,
   GETADMINACCOUNT,
   GETDOCTORDATA,
+  GETDOCTORTIMETABLE,
   GETUSER,
   LOGOUT,
   POSTLOGIN,
@@ -9,7 +10,7 @@ import {
   TOGGLE,
 } from "../types/type";
 
-const Initial = { loginOrRegister: true, dotorData: {}, loginStatus: 0, admin: [] };
+const Initial = { loginOrRegister: true, dotorData: {}, doctorTimeTable: {}, loginStatus: 0, admin: [] };
 export const appReducer = (state = Initial, action) => {
   switch (action.type) {
     case SESSIONCHECK:
@@ -26,6 +27,8 @@ export const appReducer = (state = Initial, action) => {
     //   return { ...state, admin: action.data };
     case GETDOCTORDATA:
       return { ...state, dotorData: action.data };
+    case GETDOCTORTIMETABLE:
+      return { ...state, doctorTimeTable: action.data };
     default:
       return { ...state };
   }

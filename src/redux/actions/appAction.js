@@ -3,6 +3,7 @@ import {
   ALLDATA,
   BASEURL,
   GETDOCTORDATA,
+  GETDOCTORTIMETABLE,
   GETUSER,
   LOGIN,
   LOGOUT,
@@ -70,6 +71,14 @@ export const getDoctorData = () => {
       withCredentials: true,
     });
     disp({ type: GETDOCTORDATA, data: res.data });
+  };
+};
+export const getDoctorTimeTable = () => {
+  return async (disp) => {
+    const res = await axios.get(`${BASEURL}/doctor/gettimetable`,{
+      withCredentials: true,
+    });
+    disp({ type: GETDOCTORTIMETABLE, data: res.data });
   };
 };
 
