@@ -19,7 +19,6 @@ import SignUp2 from "./components/Login/SignUp2";
 import Login1 from "./components/Login/Login1";
 import ForgotPassword1 from "./components/Login/ForgotPassword1";
 import User from "./pages/User";
-import Doctors_profile from "./components/Views/DoctorProfile";
 import DoctorTimeTable1 from "./components/Views/DoctorTimeTableUser";
 import DoctorTimeTableUser from "./components/Views/DoctorTimeTableUser";
 import DoctorAppointmentList from "./components/Views/DoctorAppointmentList";
