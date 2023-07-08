@@ -3,7 +3,7 @@
   "name": "new-project",
   "version": "0.1.0",
   "private": false,
-  "proxy": "https://localhost:4009",
+  "proxy": "http://192.168.1.4:4009",
   "dependencies": {
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",

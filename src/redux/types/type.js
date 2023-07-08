@@ -7,4 +7,5 @@ export const TOGGLE = "TOGGLE";
 export const LOGOUT = "LOGOUT";
 export const GETADMINACCOUNT = "GETADMINACCOUNT";
 export const GETDOCTORDATA = "GETDOCTORDATA";
+export const UPDATED = "UPDATED";
 export const GETDOCTORTIMETABLE = "GETDOCTORTIMETABLE";

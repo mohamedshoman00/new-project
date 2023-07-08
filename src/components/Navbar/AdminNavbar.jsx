@@ -76,7 +76,8 @@ function AdminNavbar(props) {
             variant="secondary"
             onClick={() => {
               dispatch(sessionLogOut());
-              nav(`/`,{replace:true});
+              nav(`/`, { replace: true });
+              window.location.reload();
             }}
           >
             LogOut

@@ -3,21 +3,26 @@ import { GrFormSchedule } from "react-icons/gr";
 import Card from "react-bootstrap/Card";
 import { Button, Col, Container, Row, Form } from "react-bootstrap";
 import "../../index.css";
+import { useSelector } from "react-redux";
 
 const DoctorTimeTableUser = () => {
+  const userData = useSelector((state) => state.doctorData);
+  const userTimetable = useSelector((state) => state.doctorTimeTable);
+  const date11 = new Date(userTimetable.sattime.startTime);
+  console.log(date11);
   const [docdata, setdocdata] = useState([
     {
       id: 0,
-      name: "ahmed yahia",
-      department: "dentist",
+      name: `${userData.firstName} ${userData.lastName}`,
+      department: `${userData.doctorDepartment}`,
       date: "",
       days: [
         {
-          active: false,
+          active: userTimetable.sat,
           day: "Saturday",
         },
         {
-          active: false,
+          active: userTimetable.sun,
           day: "Sunday",
         },
         {

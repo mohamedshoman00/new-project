@@ -10,7 +10,13 @@ import {
   TOGGLE,
 } from "../types/type";
 
-const Initial = { loginOrRegister: true, dotorData: {}, doctorTimeTable: {}, loginStatus: 0, admin: [] };
+const Initial = {
+  loginOrRegister: true,
+  doctorData: {},
+  doctorTimeTable: {},
+  loginStatus: 0,
+  admin: {},
+};
 export const appReducer = (state = Initial, action) => {
   switch (action.type) {
     case SESSIONCHECK:
@@ -19,14 +25,12 @@ export const appReducer = (state = Initial, action) => {
       return { ...state, loginStatus: action.status };
     case LOGOUT:
       return { ...state, loginStatus: action.status };
-    // case ALLDATA:
-    //   return { name: action.data, age: action.age };
+    case GETADMINACCOUNT:
+      return { ...state, admin: action.data };
     case TOGGLE:
       return { ...state, loginOrRegister: !state.loginOrRegister };
-    // case GETADMINACCOUNT:
-    //   return { ...state, admin: action.data };
     case GETDOCTORDATA:
-      return { ...state, dotorData: action.data };
+      return { ...state, doctorData: action.data };
     case GETDOCTORTIMETABLE:
       return { ...state, doctorTimeTable: action.data };
     default:

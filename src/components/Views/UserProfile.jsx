@@ -7,7 +7,39 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
+import { updateAdminAcc } from "../../redux/actions/appAction";
 const UserProfile = () => {
+  const data = useSelector((state) => state.admin);
+  const [adminData, setAdminData] = useState({});
+  const [updateData, setUpdateData] = useState({});
+  useEffect(() => {
+    setAdminData(data);
+    setUpdateData(data);
+  }, [data]);
+  // console.log(adminData);
+  const dispatch = useDispatch();
+  const submitHandler = (event) => {
+    event.preventDefault();
+    let updated = {};
+    if (adminData.firstName !== updateData.firstName)
+      updated = { ...updated, firstName: updateData.firstName };
+    if (adminData.lastName !== updateData.lastName)
+      updated = { ...updated, lastName: updateData.lastName };
+    if (adminData.email !== updateData.email)
+      updated = { ...updated, email: updateData.email };
+    if (adminData.mobile !== updateData.mobile)
+      updated = { ...updated, mobile: updateData.mobile };
+
+    if (Object.keys(updated).length !== 0) {
+      console.log(`Data Changed`);
+      dispatch(updateAdminAcc(updated));
+      window.location.reload();
+    }
+  };
+
   return (
     <>
       <div
@@ -25,22 +57,53 @@ const UserProfile = () => {
             >
               <h3 className="p-3">My Profile</h3>
             </div>
-            <Form className="p-4 d-flex flex-wrap align-items-center justify-content-center gap-4">
+            <Form
+              className="p-4 d-flex flex-wrap align-items-center justify-content-center gap-4"
+              onSubmit={submitHandler}
+            >
               <Form.Group className="col-lg-6" controlId="fname">
                 <Form.Label>First Name</Form.Label>
-                <Form.Control type="text" placeholder="First name" />
+                <Form.Control
+                  type="text"
+                  placeholder="First name"
+                  value={updateData.firstName}
+                  onChange={(e) =>
+                    setUpdateData({ ...updateData, firstName: e.target.value })
+                  }
+                />
               </Form.Group>
               <Form.Group className="col-lg-5" controlId="lname">
                 <Form.Label>Last Name</Form.Label>
-                <Form.Control type="text" placeholder="Last name" />
+                <Form.Control
+                  type="text"
+                  placeholder="Last name"
+                  value={updateData.lastName}
+                  onChange={(e) =>
+                    setUpdateData({ ...updateData, lastName: e.target.value })
+                  }
+                />
               </Form.Group>
               <Form.Group className="col-lg-6" controlId="email">
                 <Form.Label>Email Address</Form.Label>
-                <Form.Control type="email" placeholder="Email Address" />
+                <Form.Control
+                  type="email"
+                  placeholder="Email Address"
+                  value={updateData.email}
+                  onChange={(e) =>
+                    setUpdateData({ ...updateData, email: e.target.value })
+                  }
+                />
               </Form.Group>
               <Form.Group className="col-lg-5" controlId="phone">
                 <Form.Label>Phone Number</Form.Label>
-                <Form.Control type="text" placeholder="Phone Number" />
+                <Form.Control
+                  type="text"
+                  placeholder="Phone Number"
+                  value={updateData.mobile}
+                  onChange={(e) =>
+                    setUpdateData({ ...updateData, mobile: e.target.value })
+                  }
+                />
               </Form.Group>
               {/* <Form.Group className="col-lg-6" controlId="nationalID">
                 <Form.Label>National ID</Form.Label>
@@ -61,6 +124,7 @@ const UserProfile = () => {
                   style={{ height: "70px" }}
                 >
                   <Button
+                    type="submit"
                     variant="info"
                     style={{
                       color: "#fff",
@@ -89,8 +153,8 @@ const UserProfile = () => {
                   style={{ borderRadius: "50%" }}
                   src={doctorImg}
                 ></img>
-                <h5>Mike Andrew</h5>
-                <p>michael24</p>
+                <h5>{adminData.firstName}</h5>
+                <p>{adminData.lastName}</p>
               </div>
               <p className="text-center">
                 "Lamborghini Mercy <br></br>

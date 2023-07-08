@@ -14,13 +14,14 @@ import { BiNotepad } from "react-icons/bi";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getDoctorData } from "../redux/actions/appAction";
+import { getDoctorData, getDoctorTimeTable } from "../redux/actions/appAction";
 
 const User = () => {
   const dispatch = useDispatch();
-  useEffect(()=> {
+  useEffect(() => {
     dispatch(getDoctorData());
-  },[])
+    dispatch(getDoctorTimeTable());
+  }, []);
   const menu = [
     {
       path: "/user/user-profile",

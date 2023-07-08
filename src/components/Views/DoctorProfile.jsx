@@ -6,20 +6,48 @@ import {
   FaGooglePlusSquare,
   FaLinkedin,
 } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigation } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDoctorData } from "../../redux/actions/appAction";
+import {
+  changeDate,
+  getDoctorData,
+  updateDoctorData,
+} from "../../redux/actions/appAction";
+import { useRef } from "react";
+import { replace } from "formik";
 const DoctorProfile = () => {
+  const location = useLocation();
   const [date, setdate] = useState();
-  const chage = (e) => {
-    const date = e.target.value;
-    setdate(date);
-    console.log(date);
+  const dispatch = useDispatch();
+  // const nav = useNavigation();
+  // const userData = ;
+  const [userData, setUserData] = useState({});
+  const [mobileState, setMobileState] = useState();
+  const [textAreaState, setTextAreaState] = useState();
+  const data = useSelector((state) => state.doctorData);
+  useEffect(() => {
+    setUserData(data);
+    setMobileState(userData.mobile);
+    setTextAreaState(userData.shortBiography);
+  }, [data, updateDoctorData]);
+  const date1 = changeDate(userData.dateOfBirth);
+  const SubmitHandler = (e) => {
+    e.preventDefault();
+    const oldData = { ...userData };
+    let updatedData = {};
+    if (oldData.mobile !== mobileState)
+      updatedData = { ...updatedData, mobile: mobileState };
+    if (oldData.shortBiography !== textAreaState)
+      updatedData = { ...updatedData, shortBiography: textAreaState };
+    if (Object.keys(updatedData).length !== 0) {
+      console.log(`Data Changed`);
+      dispatch(updateDoctorData(updatedData));
+      window.location.reload();
+    }
   };
-const userData = useSelector(state=>state.doctorData);
-
+  console.log(mobileState);
   return (
     <>
       <Container fluid>
@@ -38,13 +66,16 @@ const userData = useSelector(state=>state.doctorData);
               >
                 <h3 className="p-3">My Profile</h3>
               </div>
-              <Form className="p-4 d-flex flex-wrap align-items-center  gap-4">
+              <Form
+                className="p-4 d-flex flex-wrap align-items-center  gap-4"
+                onSubmit={SubmitHandler}
+              >
                 <Form.Group className="col-lg-6" controlId="fname">
                   <Form.Label>First Name</Form.Label>
                   <Form.Control
                     type="text"
-                    // placeholder="Enter First Name"
-                    value={userData&&userData.firstName}
+                    placeholder="Enter First Name"
+                    value={userData && userData.firstName}
                     disabled
                   />
                 </Form.Group>
@@ -54,21 +85,27 @@ const userData = useSelector(state=>state.doctorData);
                   <Form.Control
                     type="text"
                     // placeholder="Enter Last Name"
-                    value={userData&&userData.lastName}
+                    value={userData && userData.lastName}
                     disabled
-                    />
+                  />
                 </Form.Group>
                 <Form.Group className="col-lg-6" controlId="mobile">
                   <Form.Label>Mobile Number</Form.Label>
-                   
-                  <Form.Control type="text" placeholder="Enter Mobile Number" value={userData&&userData.lastName} />
+
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter Mobile Number"
+                    // ref={mobileRef}
+                    value={userData && mobileState}
+                    onChange={(ele) => setMobileState(ele.target.value)}
+                  />
                 </Form.Group>
                 <Form.Group className="col-lg-5" controlId="email">
                   <Form.Label>Email Address</Form.Label>
                   <Form.Control
                     type="email"
                     // placeholder="Enter Email Address"
-                    value={userData&&userData.email}
+                    value={userData && userData.email}
                     disabled
                   />
                 </Form.Group>
@@ -79,28 +116,29 @@ const userData = useSelector(state=>state.doctorData);
                     type="text"
                     // placeholder="Enter Your Address"
                     disabled
-                    value={userData&&userData.address}
+                    value={userData && new Date(userData.address)}
                   />
                 </Form.Group>
 
-                <Form.Group className="col-lg-5" controlId="DateOfBirth">
+                <Form.Group className="col-lg-5" controlId="dateOf">
                   <Form.Label>Date of Birth</Form.Label>
                   <Form.Control
                     type="date"
-                    onChange={(e) => {
-                      chage(e);
-                    }}
-                    value={userData&&userData.dateOfBirth}
-                    />
+                    // onChange={(e) => {
+                    //   chage(e);
+                    // }}
+                    disabled
+                    value={date1}
+                  />
                 </Form.Group>
                 <Form.Group className="col-lg-6" controlId="DoctorDepartment">
                   <Form.Label>Doctor Department</Form.Label>
                   <Form.Control
                     type="text"
                     // placeholder="Doctor Department"
-                    value={userData&& userData.doctorDepartment}
+                    value={userData && userData.doctorDepartment}
                     disabled
-                    />
+                  />
                 </Form.Group>
                 <Form.Group className="col-lg-5" controlId="specialist">
                   <Form.Label>Specialist</Form.Label>
@@ -108,7 +146,7 @@ const userData = useSelector(state=>state.doctorData);
                     type="test"
                     // placeholder="Enter Your Specialist"
                     disabled
-                    value={userData&& userData.specialist}
+                    value={userData && userData.specialist}
                   />
                 </Form.Group>
                 <Form.Group className="col-lg-6" controlId="DoctorImg">
@@ -123,17 +161,20 @@ const userData = useSelector(state=>state.doctorData);
                   <textarea
                     rows="2"
                     className=" p-2"
-                    // placeholder="short Biography"
+                    placeholder="short Biography"
                     style={{ width: `94%`, outline: "none" }}
-                  >{userData && userData.shortBiography}</textarea>
+                    value={userData && textAreaState}
+                    onChange={(ele) => setTextAreaState(ele.target.value)}
+                  />
+                  {/* {userData && userData.shortBiography} */}
+                  {/* </textarea> */}
                 </Form.Group>
 
                 <Form.Group className="col-lg-12" controlId="genderID">
                   <Form.Label>Gender</Form.Label>
-                   <Form.Check
+                  <Form.Check
                     disabled
-                    // checked ={userData.gender==="male"}
-                    checked
+                    checked={userData.gender === "male"}
                     type="radio"
                     id="default-radio-male"
                     label="Male"
@@ -141,14 +182,14 @@ const userData = useSelector(state=>state.doctorData);
                   />
                   <Form.Check
                     disabled
-                    // checked ={userData.gender==="female"}
+                    checked={userData.gender === "female"}
                     type="radio"
                     id="default-radio-female"
                     label="Female"
                     name="group1"
                   />
-                </Form.Group> 
-             
+                </Form.Group>
+
                 <Form.Group className="col-lg-5">
                   <div className="d-flex gap-4  " style={{ height: "70px" }}>
                     <Button
@@ -159,10 +200,14 @@ const userData = useSelector(state=>state.doctorData);
                         height: "50px",
                         fontSize: "20px",
                       }}
+                      onClick={() => {
+                        dispatch(getDoctorData());
+                      }}
                     >
                       Reset
                     </Button>
                     <Button
+                      type="submit"
                       variant="info"
                       style={{
                         color: "#fff",
