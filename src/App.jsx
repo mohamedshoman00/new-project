@@ -129,7 +129,7 @@ function App() {
         />
         <Routes>
          
-{checkUser === "200" ? (<><Route path="/admin" element={<Admin />}/></>  ): (checkUser === "201") ?<><Route path="/user" element={<User />}/></> : (checkUser=== "203") ? <> <Route path="/login" element={<FormLogin />} /></>:<>      <Route path="forgot-password" element={<ForgotPassword1 />} /></>}
+{checkUser === "200" ? (<><Route path="/" element={<Admin />}/></>  ): (checkUser === "201") ?<><Route path="/" element={<User />}/></> : (checkUser=== "203") ? <> <Route path="/" element={<FormLogin />} /></>:<>      <Route path="/" element={<ForgotPassword1 />} /></>}
 
         </Routes>
       </AnimatePresence>
