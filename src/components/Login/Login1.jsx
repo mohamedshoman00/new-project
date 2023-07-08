@@ -49,13 +49,12 @@ const Login1 = () => {
   const checkUser = useSelector(state=>state.loginStatus);
   const handleS = (e) => {
     // e.preventDefault();
-    const data = {email:emailRef.current,password: passwordRef.current};
-    console.log(data);
+    // const data = {email:emailRef.current,password: passwordRef.current};
+    // console.log(data);
     console.log(e);
-    // dispatch(postLoginUser());
-    dispatch(sessionCheck(`200`));
-    
-    nav("../");
+    dispatch(postLoginUser(e));
+    dispatch(sessionCheck());
+    nav("../",{replace:true});
     // console.log(location);
     // const newLocation = {...location , pathname:"/"};
     // history.pushState("/");

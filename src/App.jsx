@@ -39,7 +39,7 @@ function App() {
   const checkLogin = useSelector((state) => state.user);
   console.log(checkUser);
   const RoutesApp = () => {
-    if (checkUser === "201") {
+    if (checkUser === 201) {
       return (
         <>
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
@@ -64,7 +64,7 @@ function App() {
           </Route>
         </>
       );
-    } else if (checkUser === "200") {
+    } else if (checkUser === 200) {
       return (
         <>
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
@@ -87,7 +87,7 @@ function App() {
           </Route>
         </>
       );
-    } else if (checkUser === "203") {
+    } else if (checkUser === 203) {
       return (
         <>
           <Route path="/" element={<Navigate to="/login" replace />} />
@@ -113,7 +113,7 @@ function App() {
     //   //   theme: "colored",
     //   // });
     //   // dispatch(sessionLogOut());
-    dispatch(sessionCheck(`203`));
+    dispatch(sessionCheck());
     // RoutesApp();
   }, [checkLogin]);
   const fff = ()=>{
