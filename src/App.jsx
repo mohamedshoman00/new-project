@@ -39,10 +39,10 @@ function App() {
   const checkLogin = useSelector((state) => state.user);
   console.log(checkUser);
   const RoutesApp = () => {
-    if (checkUser === 200) {
+    if (checkUser === 201) {
       return (
         <>
-          <Route path="*" element={<Navigate to="/" />} />
+          {/* <Route path="*" element={<Navigate to="/" />} /> */}
           <Route path="/" element={<Navigate to="/admin" replace />} />
           <Route path="/admin" element={<Admin />}>
             <Route
@@ -64,10 +64,10 @@ function App() {
           </Route>
         </>
       );
-    } else if (checkUser === 201) {
+    } else if (checkUser === 200) {
       return (
         <>
-          <Route path="*" element={<Navigate to="/" />} />
+          {/* <Route path="*" element={<Navigate to="/" />} /> */}
           <Route path="/" element={<Navigate to="/user" replace />} />
           <Route path="/user" element={<User />}>
             <Route
@@ -87,27 +87,31 @@ function App() {
           </Route>
         </>
       );
-    }
-     else if (checkUser === 203) {
-    return <> <Route path="/" element={<Navigate to="/login" replace />} />
-    <Route path="/login" element={<FormLogin />} />
-    <Route path="forgot-password" element={<ForgotPassword1 />} /></>;
+    } else if (checkUser === 203) {
+      return (
+        <>
+          {" "}
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/login" element={<FormLogin />} />
+          <Route path="forgot-password" element={<ForgotPassword1 />} />
+        </>
+      );
     }
   };
   useEffect(() => {
-  //   // toast.success("🦄 Wow so easy!", {
-  //   //   position: "top-right",
-  //   //   autoClose: 5000,
-  //   //   hideProgressBar: false,
-  //   //   closeOnClick: true,
-  //   //   pauseOnHover: true,
-  //   //   draggable: true,
-  //   //   progress: undefined,
-  //   //   theme: "colored",
-  //   // });
-  //   // dispatch(sessionLogOut());
-    dispatch(sessionCheck());
-    RoutesApp();
+    //   // toast.success("🦄 Wow so easy!", {
+    //   //   position: "top-right",
+    //   //   autoClose: 5000,
+    //   //   hideProgressBar: false,
+    //   //   closeOnClick: true,
+    //   //   pauseOnHover: true,
+    //   //   draggable: true,
+    //   //   progress: undefined,
+    //   //   theme: "colored",
+    //   // });
+    //   // dispatch(sessionLogOut());
+    dispatch(sessionCheck(`203`));
+    // RoutesApp();
   }, [checkLogin]);
   return (
     <>
@@ -124,9 +128,7 @@ function App() {
           pauseOnHover
           theme="colored"
         />
-        <Routes>
-          {RoutesApp()}
-        </Routes>
+        <Routes>{RoutesApp()}</Routes>
       </AnimatePresence>
     </>
   );

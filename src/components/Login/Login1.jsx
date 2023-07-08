@@ -12,6 +12,7 @@ import { Field, Form, Formik } from "formik";
 import { TextField } from "formik-material-ui";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { toast } from "react-toastify";
 const Login1 = () => {
   const dispatch = useDispatch();
   // axios.default.withCredentials = true;
@@ -42,12 +43,27 @@ const Login1 = () => {
     },
   ];
   const nav = useNavigate();
-
+  let checkUser = useSelector(state=>state.loginStatus);
   const handleS = (ele) => {
-    // console.log(e);
     dispatch(postLoginUser(ele));
-    dispatch(sessionCheck());
-    nav("../", { replace: true });
+    dispatch(sessionCheck(`200`));
+    if(checkUser===`200`)
+    nav("../user", { replace: true });
+    else if (checkUser === `201`)
+    nav("../user", { replace: true });
+    else {
+            toast.success("invalid email or password", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+    // <Redirect to="/" />
     // console.log(initialValues);
   };
   return (
@@ -81,7 +97,7 @@ const Login1 = () => {
               <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema1}
-                onSubmit={handleS}
+                // onSubmit={handleS}
               >
                 {({
                   values,
@@ -95,7 +111,7 @@ const Login1 = () => {
                   <Form
                     className="d-flex flex-wrap justify-content-between text-center p-3 gap-2"
                     style={{ width: "370px" }}
-                    onSubmit={handleSubmit}
+                    onSubmit={handleS}
                   >
                     {fields.map((e, i) => (
                       <Field
