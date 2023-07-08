@@ -54,8 +54,9 @@ const Login1 = () => {
     console.log(e);
     // dispatch(postLoginUser());
     dispatch(sessionCheck(`200`));
-    // nav("../", { replace: true });
-    console.log(location);
+    
+    nav("../");
+    // console.log(location);
     // const newLocation = {...location , pathname:"/"};
     // history.pushState("/");
     // if(checkUser===`200`)
