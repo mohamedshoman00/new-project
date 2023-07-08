@@ -48,23 +48,32 @@ const Login1 = () => {
   const nav = useNavigate();
   // const checkUser = useSelector(state=>state.loginStatus);
 
-  const handleSubmit  = (e) => {
+  const handleSubmit  = async(e) => {
     // event.preventDefault();
     // const data = {email:emailRef.current,password: passwordRef.current};
     // console.log(data);
     // console.log(e);
-    // try {
+    try {
       // Dispatch the first function and wait for it to complete
     //  dispatch(postLoginUser({email:"www@www.com",password:"wwwwww"}));
-     dispatch(postLoginUser(e));
+     await dispatch(postLoginUser(e));
       // Dispatch the second function
       // window.location.reload();
       // window.location.replace("/");
       // dispatch(sessionCheck());
       nav("../",{replace:true});
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    } catch (error) {
+           toast.success("invalid email or password", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
     ;
     // window.location.reload();
     // console.log(location);

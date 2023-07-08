@@ -40,14 +40,17 @@ export const postLoginUser = (ele) => {
     const res = await axios.post(`${BASEURL}/login`, ele, {
       withCredentials: true,
     });
+    // if (res.status=== 200)
         disp({ type: POSTLOGIN, status: res.status });
   };
 };
 export const sessionLogOut = () => {
   return async (disp) => {
-    const res = await axios.get(`${BASEURL}/logout`);
+    const res = await axios.get(`${BASEURL}/logout`,{
+      withCredentials: true,
+    });
     console.log(res);
-    sessionCheck();
+    // sessionCheck();
     disp({ type: LOGOUT, status: res.status });
   };
 };
