@@ -129,23 +129,39 @@ const userData = useSelector(state=>state.doctorData);
                 </Form.Group>
                 <Form.Group className="col-lg-12" controlId="DoctorImg">
                   <Form.Label>Gender</Form.Label>
-                  <Form.Check
+                  {userData.gender ==="male"? (<>
+                    <Form.Check
                     disabled
-                    checked = {userData.gender === "male" ? true:false}
+                    checked 
                     type="radio"
                     id="default-radio-male"
                     label="Male"
                     name="group1"
                   />
-
                   <Form.Check
                     disabled
-                    checked = {userData.gender === "female" ? true:false}
                     type="radio"
                     id="default-radio-female"
                     label="Female"
                     name="group1"
-                  />
+                  /></>)
+                :   (<>
+                <Form.Check
+                disabled
+                type="radio"
+                id="default-radio-male"
+                label="Male"
+                name="group1"
+              />
+              <Form.Check
+                disabled
+                 checked
+                type="radio"
+                id="default-radio-female"
+                label="Female"
+                name="group1"
+              /></>)}
+               
                 </Form.Group>
                 <Form.Group className="col-lg-5">
                   <div className="d-flex gap-4  " style={{ height: "70px" }}>
