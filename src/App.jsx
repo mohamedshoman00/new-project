@@ -107,7 +107,7 @@ function App() {
   //   // });
   //   // dispatch(sessionLogOut());
     dispatch(sessionCheck());
-  //   RoutesApp();
+    RoutesApp();
   }, [checkLogin]);
   return (
     <>
