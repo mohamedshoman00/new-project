@@ -127,8 +127,7 @@ const Login1 = () => {
                         component={TextField}
                         label={e.label}
                         variant="standard"
-                        // ref={`${e.name}Ref`}
-                        // disabled={isSubmitting}
+                        ref={e.ref}
                       />
                     ))}
                     <Button
