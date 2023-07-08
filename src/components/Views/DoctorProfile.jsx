@@ -131,7 +131,7 @@ const userData = useSelector(state=>state.doctorData);
                   <Form.Label>Gender</Form.Label>
                   <Form.Check
                     disabled
-                    checked = {userData.gender === 'male' ? true:false}
+                    checked = {userData.gender === "male" ? true:false}
                     type="radio"
                     id="default-radio-male"
                     label="Male"
@@ -140,7 +140,7 @@ const userData = useSelector(state=>state.doctorData);
 
                   <Form.Check
                     disabled
-                    checked = {userData.gender === 'female' ? true:false}
+                    checked = {userData.gender === "female" ? true:false}
                     type="radio"
                     id="default-radio-female"
                     label="Female"
