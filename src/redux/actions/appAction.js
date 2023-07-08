@@ -33,9 +33,7 @@ export const sessionCheck = () => {
 
 export const postLoginUser = (ele) => {
   return async (disp) => {
-    const res = await axios.post(`${BASEURL}/login`, ele, {
-      withCredentials: true,
-    });
+    const res = await axios.post(`${BASEURL}/login`, ele);
     console.log(res);
     disp({ type: POSTLOGIN, data: res.status });
   };
