@@ -15,6 +15,7 @@ import { IoPersonAddSharp } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { FaUserAlt } from "react-icons/fa";
+import { useSelector } from "react-redux";
 const DoctorList = () => {
   const [doctors, setDoctors] = useState([
     {
@@ -99,84 +100,52 @@ const DoctorList = () => {
       showDetails: false,
     },
   ]);
+  const data = useSelector((state) => state.allDoctors);
+  const [doctorsData, setDoctorsData] = useState([]);
+  useEffect(() => {
+    setDoctorsData(data);
+    // data.map((e) => {
+    //   return { ...e, showDetails: false };
+    // });
+  }, [data]);
+  // const [doctorsData] = data.map((e) => {
+  //   return { ...e, showDetails: false };
+  // });
+  console.log(doctorsData);
   const divRef = useRef();
   const menuRef = useRef();
   const [een, seteen] = useState(false);
-  // const oncl = (e) => {
-  //   const doc = { ...doctors };
-  //   console.log(e);
+  // const handleDetails = (ele) => {
+  //   const doctor = [...doctorsData];
+  //   const newDocs = doctor.map((e) => {
+  //     return { ...e, showDetails: false };
+  //   });
+  //   const i = newDocs.findIndex((e) => e.id === ele.id);
+  //   newDocs[i] = {
+  //     ...newDocs[i],
+  //     showDetails: !newDocs[i].showDetails,
+  //   };
+  //   setDoctorsData(newDocs);
   // };
-  /* 
-   // useEffect(() => {
-  // let handler = (e) => {
-  // const ele = e.target.closest("div.details-div");
-  // if (!ele) {
-  //   const doctor = [...doctors];
-  //   const findele = doctor.filter((e, i) => e.showDetails === true);
-  //   if (findele.length !== 0) {
-  //     const i = doctor.findIndex((e) => e.id === findele[0].id);
-  //     console.log(findele);
-  //     console.log(i);
-  //     doctor[i] = { ...doctor[i], showDetails: !doctor[i].showDetails };
-  //     setDoctors(doctor);
+  // const showDetailsHandler = (e) => {
+  //   const ele = e.target.closest("div.details-div");
+  //   if (!ele) {
+  //     const doctor = [...doctorsData];
+  //     const findele = doctor.filter((e) => e.showDetails === true);
+  //     if (findele.length !== 0) {
+  //       const i = doctor.findIndex((e) => e.id === findele[0].id);
+  //       doctor[i] = { ...doctor[i], showDetails: !doctor[i].showDetails };
+  //       setDoctorsData(doctor);
+  //     }
   //   }
-  // }
-  // console.log(e.target.closest("div.list-nav"));
-  // if (!divRef.current.contains(e.target)) {
-  // console.log(e.target);
-  // console.log(listRef.current);
-  // seteen(false);
-  // console.log("click outside div");
-  // const doctor = [...doctors];
-  // const ele = doctor.filter((e) => e.showDetails === true);
-  // console.log(ele);
-  // if (ele.length !== 0) {
-  //   console.log(ele[0].id);
-  //   const i = doctor.findIndex((e) => e.id === ele[0].id);
-  //   console.log(i);
-  //   doctor[i] = { ...doctor[i], showDetails: !doctor[i].showDetails };
-  //   setDoctors(doctor);
   // };
-  // } else console.log("click inside Div");
-  //     console.log(divRef.current);
-  //     console.log(e.target.closest("div"));
-  //     console.log(
-  //       e.target.closest("div") === divRef.current.contains(e.target)
-  //     );
-  //   };
-  //   document.addEventListener("mousedown", handler);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handler);
-  //   };
-  // });
 
-  */
-
-  const handleDetails = (ele) => {
-    const doctor = [...doctors];
-    const newDocs = doctor.map((e) => {
-      return { ...e, showDetails: false };
-    });
-    const i = newDocs.findIndex((e) => e.id === ele.id);
-    newDocs[i] = {
-      ...newDocs[i],
-      showDetails: !newDocs[i].showDetails,
-    };
-    setDoctors(newDocs);
+  const handleActive = (i) => {
+    console.log(i);
+    // const doctor = [...doctorsData];
+    // doctor[i] = { ...doctor[i], isactive: !doctor[i].isactive };
+    // setDoctorsData(doctor);
   };
-  const showDetailsHandler = (e) => {
-    const ele = e.target.closest("div.details-div");
-    if (!ele) {
-      const doctor = [...doctors];
-      const findele = doctor.filter((e) => e.showDetails === true);
-      if (findele.length !== 0) {
-        const i = doctor.findIndex((e) => e.id === findele[0].id);
-        doctor[i] = { ...doctor[i], showDetails: !doctor[i].showDetails };
-        setDoctors(doctor);
-      }
-    }
-  };
-
   return (
     <>
       <div
@@ -185,11 +154,11 @@ const DoctorList = () => {
           backgroundColor: "#f1f5fc",
           padding: "15px",
         }}
-        onClick={showDetailsHandler}
+        // onClick={showDetailsHandler}
       >
         {/* Doctors List */}
         <div className="w-100 d-flex flex-wrap">
-          {doctors.map((e, i) => (
+          {doctorsData.map((e, i) => (
             <Col lg={4} md={4} sm={6} className="px-3 px-sm-2 doc-card" key={i}>
               <Card style={{ marginBottom: "2rem" }}>
                 <div
@@ -213,7 +182,7 @@ const DoctorList = () => {
                             margin: "0",
                           }}
                         >
-                          {e.name}
+                          {`${e.firstName} ${e.lastName}`}
                         </h6>
                         <p
                           className="my-1"
@@ -222,7 +191,7 @@ const DoctorList = () => {
                             color: "#878793",
                           }}
                         >
-                          {e.jopTitle}
+                          {e.doctorDepartment}
                         </p>
                         <p
                           className="mt-2 d-flex align-items-center"
@@ -233,7 +202,7 @@ const DoctorList = () => {
                           }}
                         >
                           <ImLocation style={{ fontSize: "12px" }} />
-                          {e.location}
+                          {e.address}
                         </p>
                       </div>
                     </div>
@@ -241,7 +210,7 @@ const DoctorList = () => {
                   <div className="details-div" list-id={i}>
                     <HiDotsVertical
                       style={{ cursor: "pointer" }}
-                      onClick={() => handleDetails(e)}
+                      // onClick={() => handleDetails(e)}
                     />
                     {e.showDetails && (
                       <motion.div
@@ -402,7 +371,7 @@ const DoctorList = () => {
               ACTIVE/INACTIVE DOCTORS
             </h4>
             <ListGroup>
-              {doctors.map((e, i) => (
+              {doctorsData.map((e, i) => (
                 <ListGroup.Item
                   key={i}
                   className="py-2"
@@ -428,7 +397,7 @@ const DoctorList = () => {
                           margin: "0",
                         }}
                       >
-                        {e.name}
+                        {`${e.firstName} ${e.lastName}`}
                       </h6>
                       <p
                         className="my-1"
@@ -437,16 +406,19 @@ const DoctorList = () => {
                           color: "#878793",
                         }}
                       >
-                        {e.jopTitle}
+                        {e.doctorDepartment}
                       </p>
                     </div>
                     <Button
                       className={
-                        e.isActive ? "btn-isActive" : "btn-isNotActive"
+                        e.isactive ? "btn-isActive" : "btn-isNotActive"
                       }
-                      style={{ opacity: e.isActive ? "0.95" : "1" }}
+                      style={{ opacity: e.isactive ? "0.95" : "1" }}
+                      onClick={() => {
+                        handleActive(i);
+                      }}
                     >
-                      {e.isActive ? (
+                      {e.isactive ? (
                         <HiCheck style={{ fontSize: "20px" }} />
                       ) : (
                         <IoPersonAddSharp style={{ fontSize: "20px" }} />

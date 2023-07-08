@@ -14,7 +14,7 @@ import { BiNotepad } from "react-icons/bi";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getAdminAcc } from "../redux/actions/appAction";
+import { getAdminAcc, getAllDoctors } from "../redux/actions/appAction";
 
 const Admin = () => {
   const menu = [
@@ -49,6 +49,7 @@ const Admin = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAdminAcc());
+    dispatch(getAllDoctors());
   }, []);
   return (
     <>

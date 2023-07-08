@@ -3,6 +3,7 @@ import {
   ALLDATA,
   BASEURL,
   GETADMINACCOUNT,
+  GETALLDOCTORS,
   GETDOCTORDATA,
   GETDOCTORTIMETABLE,
   GETUSER,
@@ -111,5 +112,14 @@ export const getDoctorTimeTable = () => {
       withCredentials: true,
     });
     disp({ type: GETDOCTORTIMETABLE, data: res.data });
+  };
+};
+
+export const getAllDoctors = () => {
+  return async (disp) => {
+    const res = await axios.get(`/admin/getalldoctors`, {
+      withCredentials: true,
+    });
+    disp({ type: GETALLDOCTORS, data: res.data });
   };
 };

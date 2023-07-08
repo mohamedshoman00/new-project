@@ -1,6 +1,7 @@
 import {
   ALLDATA,
   GETADMINACCOUNT,
+  GETALLDOCTORS,
   GETDOCTORDATA,
   GETDOCTORTIMETABLE,
   GETUSER,
@@ -16,6 +17,7 @@ const Initial = {
   doctorTimeTable: {},
   loginStatus: 0,
   admin: {},
+  allDoctors: [],
 };
 export const appReducer = (state = Initial, action) => {
   switch (action.type) {
@@ -33,6 +35,8 @@ export const appReducer = (state = Initial, action) => {
       return { ...state, doctorData: action.data };
     case GETDOCTORTIMETABLE:
       return { ...state, doctorTimeTable: action.data };
+    case GETALLDOCTORS:
+      return { ...state, allDoctors: action.data };
     default:
       return { ...state };
   }

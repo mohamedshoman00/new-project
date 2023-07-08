@@ -41,7 +41,8 @@ function App() {
   const RoutesApp = () => {
     if (checkUser === 201) {
       return (
-        <>     <Route path="*" element={<Navigate to="/admin" replace />}/>
+        <>
+          <Route path="*" element={<Navigate to="/admin" replace />} />
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
           {/* <Route path="/" element={<Navigate to="/admin" replace />} /> */}
           <Route path="/admin" element={<Admin />}>
@@ -67,7 +68,7 @@ function App() {
     } else if (checkUser === 200) {
       return (
         <>
-             <Route path="*" element={<Navigate to="/user" replace />}/>
+          <Route path="*" element={<Navigate to="/user" replace />} />
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
           {/* <Route path="/" element={<Navigate to="/user" replace />} /> */}
           <Route path="/user" element={<User />}>
@@ -91,15 +92,14 @@ function App() {
     } else if (checkUser === 203) {
       return (
         <>
-          <Route path="*" element={<Navigate to="/login" replace />}/>
+          <Route path="*" element={<Navigate to="/login" replace />} />
           {/* <Route path="/" element={<Navigate to="/login" replace />} /> */}
           <Route path="/login" element={<FormLogin />} />
           <Route path="forgot-password" element={<ForgotPassword1 />} />
         </>
       );
-    }else
-    {
-      return( <Route path="/" element={<NotFound />}/>)
+    } else {
+      return <Route path="/" element={<NotFound />} />;
     }
   };
   useEffect(() => {
@@ -117,9 +117,27 @@ function App() {
     dispatch(sessionCheck());
     // RoutesApp();
   }, [checkLogin]);
-  const fff = ()=>{
-    return checkUser === "200" ? (<><Route path="/" element={<Admin />}/></>  ): (checkUser === "201") ?<><Route path="/" element={<User />}/></> : (checkUser=== "203") ? <> <Route path="/" element={<FormLogin />} /></>:<>      <Route path="/" element={<ForgotPassword1 />} /></>
-  }
+  const fff = () => {
+    return checkUser === "200" ? (
+      <>
+        <Route path="/" element={<Admin />} />
+      </>
+    ) : checkUser === "201" ? (
+      <>
+        <Route path="/" element={<User />} />
+      </>
+    ) : checkUser === "203" ? (
+      <>
+        {" "}
+        <Route path="/" element={<FormLogin />} />
+      </>
+    ) : (
+      <>
+        {" "}
+        <Route path="/" element={<ForgotPassword1 />} />
+      </>
+    );
+  };
   return (
     <>
       <AnimatePresence>
@@ -136,9 +154,8 @@ function App() {
           theme="colored"
         />
         <Routes>
-         
-{/* {checkUser === 200 ? (<><Route path="/" element={<Admin />}/></>  ): (checkUser === 201) ?<><Route path="/" element={<User />}/></> : (checkUser=== 203) ? <> <Route path="/" element={<FormLogin />} /></>:<>      <Route path="/" element={<ForgotPassword1 />} /></>} */}
-{RoutesApp()}
+          {/* {checkUser === 200 ? (<><Route path="/" element={<Admin />}/></>  ): (checkUser === 201) ?<><Route path="/" element={<User />}/></> : (checkUser=== 203) ? <> <Route path="/" element={<FormLogin />} /></>:<>      <Route path="/" element={<ForgotPassword1 />} /></>} */}
+          {RoutesApp()}
         </Routes>
       </AnimatePresence>
     </>
