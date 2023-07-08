@@ -52,9 +52,9 @@ const Login1 = () => {
     console.log(data);
     console.log(e);
     // dispatch(postLoginUser());
-    // dispatch(sessionCheck(`200`));
+    dispatch(sessionCheck(`200`));
+    nav("../", { replace: true });
     // if(checkUser===`200`)
-    // nav("../user", { replace: true });
     // else if (checkUser === `201`)
     // nav("../admin", { replace: true });
     // else {
