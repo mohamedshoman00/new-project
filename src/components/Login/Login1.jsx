@@ -46,14 +46,14 @@ const Login1 = () => {
     },
   ];
   const nav = useNavigate();
-  const checkUser = useSelector(state=>state.loginStatus);
+  // const checkUser = useSelector(state=>state.loginStatus);
+
   const handleS = (e) => {
     // e.preventDefault();
     // const data = {email:emailRef.current,password: passwordRef.current};
     // console.log(data);
     console.log(e);
     dispatch(postLoginUser(e));
-    
     // window.location.reload();
     nav("../",{replace:true});
     // console.log(location);
