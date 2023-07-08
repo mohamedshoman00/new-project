@@ -37,7 +37,7 @@ export const postLoginUser = (ele) => {
       withCredentials: true,
     });
     console.log(res);
-    disp({ type: POSTLOGIN, data: res });
+    disp({ type: POSTLOGIN, data: res.status });
   };
 };
 export const sessionLogOut = () => {
