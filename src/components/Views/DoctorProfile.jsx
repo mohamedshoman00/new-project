@@ -9,7 +9,7 @@ import {
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getDoctorData } from "../../redux/actions/appAction";
 const DoctorProfile = () => {
   const [date, setdate] = useState();
@@ -18,6 +18,7 @@ const DoctorProfile = () => {
     setdate(date);
     console.log(date);
   };
+const userData = useSelector(state=>state.doctorData);
 
   return (
     <>
@@ -43,6 +44,7 @@ const DoctorProfile = () => {
                   <Form.Control
                     type="text"
                     placeholder="Enter First Name"
+                    value={userData&&userData.firstName}
                     disabled
                   />
                 </Form.Group>
@@ -52,18 +54,21 @@ const DoctorProfile = () => {
                   <Form.Control
                     type="text"
                     placeholder="Enter Last Name"
+                    value={userData&&userData.lastName}
                     disabled
-                  />
+                    />
                 </Form.Group>
                 <Form.Group className="col-lg-6" controlId="mobile">
                   <Form.Label>Mobile Number</Form.Label>
-                  <Form.Control type="text" placeholder="Enter Mobile Number" />
+                   
+                  <Form.Control type="text" placeholder="Enter Mobile Number" value={userData&&userData.lastName} />
                 </Form.Group>
                 <Form.Group className="col-lg-5" controlId="email">
                   <Form.Label>Email Address</Form.Label>
                   <Form.Control
                     type="email"
                     placeholder="Enter Email Address"
+                    value={userData&&userData.email}
                     disabled
                   />
                 </Form.Group>
@@ -74,6 +79,7 @@ const DoctorProfile = () => {
                     type="text"
                     placeholder="Enter Your Address"
                     disabled
+                    value={userData&&userData.address}
                   />
                 </Form.Group>
 
@@ -84,7 +90,8 @@ const DoctorProfile = () => {
                     onChange={(e) => {
                       chage(e);
                     }}
-                  />
+                    value={userData&&userData.dateOfBirth}
+                    />
                 </Form.Group>
                 <Form.Group className="col-lg-6" controlId="DoctorDepartment">
                   <Form.Label>Doctor Department</Form.Label>
@@ -92,7 +99,8 @@ const DoctorProfile = () => {
                     type="text"
                     placeholder="Doctor Department"
                     disabled
-                  />
+                    value={userData&& userData.doctorDepartment}
+                    />
                 </Form.Group>
                 <Form.Group className="col-lg-5" controlId="specialist">
                   <Form.Label>Specialist</Form.Label>
@@ -100,6 +108,7 @@ const DoctorProfile = () => {
                     type="test"
                     placeholder="Enter Your Specialist"
                     disabled
+                    value={userData&& userData.specialist}
                   />
                 </Form.Group>
                 <Form.Group className="col-lg-6" controlId="DoctorImg">
@@ -116,13 +125,13 @@ const DoctorProfile = () => {
                     className=" p-2"
                     placeholder="short Biography"
                     style={{ width: `94%`, outline: "none" }}
-                  ></textarea>
+                  >{userData && userData.shortBiography}</textarea>
                 </Form.Group>
                 <Form.Group className="col-lg-12" controlId="DoctorImg">
                   <Form.Label>Gender</Form.Label>
                   <Form.Check
                     disabled
-                    checked
+                    checked = {userData.gender === 'male' ? true:false}
                     type="radio"
                     id="default-radio-male"
                     label="Male"
@@ -131,6 +140,7 @@ const DoctorProfile = () => {
 
                   <Form.Check
                     disabled
+                    checked = {userData.gender === 'female' ? true:false}
                     type="radio"
                     id="default-radio-female"
                     label="Female"

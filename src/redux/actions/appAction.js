@@ -69,7 +69,6 @@ export const getDoctorData = () => {
     const res = await axios.get(`${BASEURL}/doctor/getaccount`,{
       withCredentials: true,
     });
-    console.log(res);
     disp({ type: GETDOCTORDATA, data: res.data });
   };
 };
