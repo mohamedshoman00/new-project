@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import * as Yup from "yup";
 import { Button, Card, Container, Col } from "react-bootstrap";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   postLoginUser,
@@ -24,6 +24,7 @@ const Login1 = () => {
   };
   const emailRef = useRef();
   const passwordRef = useRef();
+  const location = useLocation();
   const validationSchema1 = Yup.object().shape({
     email: Yup.string().email().required("Email is required"),
     password: Yup.string().min(6).required("Password is required"),
@@ -53,7 +54,8 @@ const Login1 = () => {
     console.log(e);
     // dispatch(postLoginUser());
     dispatch(sessionCheck(`200`));
-    nav("../", { replace: true });
+    // nav("../", { replace: true });
+    console.log(location);
     // if(checkUser===`200`)
     // else if (checkUser === `201`)
     // nav("../admin", { replace: true });
