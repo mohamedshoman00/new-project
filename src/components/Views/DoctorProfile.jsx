@@ -8,6 +8,9 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getDoctorData } from "../../redux/actions/appAction";
 const DoctorProfile = () => {
   const [date, setdate] = useState();
   const chage = (e) => {
@@ -15,6 +18,10 @@ const DoctorProfile = () => {
     setdate(date);
     console.log(date);
   };
+  const dispatch = useDispatch();
+  useEffect(()=> {
+    dispatch(getDoctorData());
+  },[])
   return (
     <>
       <Container fluid>

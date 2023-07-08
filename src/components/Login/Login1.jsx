@@ -63,7 +63,7 @@ const Login1 = () => {
       // dispatch(sessionCheck());
       nav("../",{replace:true});
     } catch (error) {
-           toast.success("invalid email or password", {
+        toast.error("invalid email or password", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
