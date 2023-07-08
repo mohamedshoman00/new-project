@@ -47,7 +47,7 @@ const Login1 = () => {
     // console.log(e);
     dispatch(postLoginUser(ele));
     dispatch(sessionCheck());
-    nav("/", { replace: true });
+    nav("../", { replace: true });
     // console.log(initialValues);
   };
   return (
