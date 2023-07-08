@@ -126,7 +126,7 @@ const Login1 = () => {
                   touched,
                   handleChange,
                   handleBlur,
-                  // handleSubmit,
+                  handleSubmit,
                   isSubmitting,
                 }) => (
                   <Form
