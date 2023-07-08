@@ -32,7 +32,6 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { BASEURL } from "./redux/types/type";
-
 function App() {
   const dispatch = useDispatch();
   const checkUser = useSelector((state) => state.loginStatus);

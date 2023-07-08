@@ -34,23 +34,28 @@ const Login1 = () => {
       type: "email",
       label: "Email",
       name: "email",
+      ref: emailRef,
     },
     {
       style: { width: "100%" },
       type: "password",
       label: "Password",
       name: "password",
+      ref: passwordRef,
     },
   ];
   const nav = useNavigate();
-  let checkUser = useSelector(state=>state.loginStatus);
-  const handleS = (ele) => {
-    dispatch(postLoginUser(ele));
-    dispatch(sessionCheck(`200`));
+  const checkUser = useSelector(state=>state.loginStatus);
+  const handleS = (e) => {
+    e.preventDefault();
+    const data = {email:emailRef.current.value,password: passwordRef.current.value};
+    console.log(data);
+    // dispatch(postLoginUser());
+    // dispatch(sessionCheck(`200`));
     if(checkUser===`200`)
     nav("../user", { replace: true });
     else if (checkUser === `201`)
-    nav("../user", { replace: true });
+    nav("../admin", { replace: true });
     else {
             toast.success("invalid email or password", {
         position: "top-right",
