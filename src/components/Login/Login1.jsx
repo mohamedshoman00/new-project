@@ -49,17 +49,17 @@ const Login1 = () => {
   // const checkUser = useSelector(state=>state.loginStatus);
 
   const handleS = async (e) => {
-     e.preventDefault();
+    // e.preventDefault();
     // const data = {email:emailRef.current,password: passwordRef.current};
     // console.log(data);
     console.log(e);
     try {
       // Dispatch the first function and wait for it to complete
-      await dispatch(postLoginUser({email:'www@www.com',password:'wwwwww'}));
+      await dispatch(postLoginUser(e));
       // Dispatch the second function
-      // window.location.reload();
-      // window.location.replace("/");
-      // dispatch(sessionCheck());
+      window.location.reload();
+      window.location.replace("/");
+      dispatch(sessionCheck());
       nav("../",{replace:true});
     } catch (error) {
       console.log(error);
@@ -117,7 +117,7 @@ const Login1 = () => {
               <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema1}
-                // onSubmit={handleS}
+                onSubmit={handleS}
               >
                 {({
                   values,
@@ -131,7 +131,7 @@ const Login1 = () => {
                   <Form
                     className="d-flex flex-wrap justify-content-between text-center p-3 gap-2"
                     style={{ width: "370px" }}
-                    onSubmit={handleS}
+                    onSubmit={handleSubmit}
                   >
                     {fields.map((e, i) => (
                       <Field
