@@ -88,9 +88,11 @@ function App() {
         </>
       );
     }
-    // } else if (checkUser === 203) {
-    return <>{/*  */}</>;
-    // }
+     else if (checkUser === 203) {
+    return <> <Route path="/" element={<Navigate to="/login" replace />} />
+    <Route path="/login" element={<FormLogin />} />
+    <Route path="forgot-password" element={<ForgotPassword1 />} /></>;
+    }
   };
   // useEffect(() => {
   //   // toast.success("🦄 Wow so easy!", {
@@ -123,35 +125,7 @@ function App() {
           theme="colored"
         />
         <Routes>
-          {/* <Route path="*" element={<Navigate to="/" />} /> */}
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/login" element={<FormLogin />} />
-          <Route path="forgot-password" element={<ForgotPassword1 />} />
-          {/*  */}
-          {/* <Route path="*" element={<Navigate to="/" />} /> */}
-          {/* <Route path="/" element={<Navigate to="/admin" replace />} /> */}
-          <Route path="/admin" element={<Admin />}>
-            <Route
-              path="/admin"
-              element={<Navigate to="/admin/user-profile" replace />}
-            />
-            <Route path="/admin/user-profile" element={<UserProfile />} />
-            <Route path="/admin/doctor" element={<DoctorList />} />
-            <Route path="/admin/patient" element={<PatientList />} />
-            <Route path="/admin/doctor-schedule" element={<DoctorSchedule />} />
-            <Route
-              path="/admin/doctor-time-table"
-              element={<DoctorTimeTable />}
-            />
-            <Route
-              path="/admin/appointment-list"
-              element={<AppointmentList />}
-            />
-          </Route>
-          {/* <Route path="/signup" element={<FormSignUp />} />
-          <Route path="/ss" element={<SignupForm />} />
-          <Route path="/ee" element={<Ee />} /> */}
-          {/* {RoutesApp()} */}
+          {RoutesApp()}
         </Routes>
       </AnimatePresence>
     </>

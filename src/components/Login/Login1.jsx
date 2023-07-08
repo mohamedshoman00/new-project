@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import * as Yup from "yup";
 import { Button, Card, Container, Col } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -21,6 +21,8 @@ const Login1 = () => {
     email: "",
     password: "",
   };
+  const emailRef = useRef();
+  const passwordRef = useRef();
   const validationSchema1 = Yup.object().shape({
     email: Yup.string().email().required("Email is required"),
     password: Yup.string().min(6).required("Password is required"),
@@ -41,11 +43,12 @@ const Login1 = () => {
   ];
   const nav = useNavigate();
 
-  const handleS = (e) => {
-    console.log(e);
-    dispatch(postLoginUser(e));
-    // dispatch(sessionCheck());
+  const handleS = (ele) => {
+    // console.log(e);
+    dispatch(postLoginUser(ele));
+    dispatch(sessionCheck());
     nav("/", { replace: true });
+    // console.log(initialValues);
   };
   return (
     <>
@@ -104,6 +107,7 @@ const Login1 = () => {
                         component={TextField}
                         label={e.label}
                         variant="standard"
+                        // ref={`${e.name}Ref`}
                         // disabled={isSubmitting}
                       />
                     ))}

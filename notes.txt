@@ -63,3 +63,8 @@ useEffect(() => {
 panels-container ${
             islogin ? `panels-1` : `panels-2`
           }
+
+
+
+"homepage": "https://mohamedshoman00.github.io/new-project",
+  "name": "new-project",
