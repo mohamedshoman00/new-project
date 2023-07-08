@@ -37,7 +37,7 @@ export const postLoginUser = (ele) => {
     const res = await axios.post(`${BASEURL}/login`, ele, {
       withCredentials: true,
     });
-    sessionCheck();
+    // sessionCheck();
     console.log(res);
     disp({ type: POSTLOGIN, data: res.status });
   };
