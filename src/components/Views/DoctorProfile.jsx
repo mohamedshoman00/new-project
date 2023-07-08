@@ -43,7 +43,7 @@ const userData = useSelector(state=>state.doctorData);
                   <Form.Label>First Name</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter First Name"
+                    // placeholder="Enter First Name"
                     value={userData&&userData.firstName}
                     disabled
                   />
@@ -53,7 +53,7 @@ const userData = useSelector(state=>state.doctorData);
                   <Form.Label>Last Name</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter Last Name"
+                    // placeholder="Enter Last Name"
                     value={userData&&userData.lastName}
                     disabled
                     />
@@ -67,7 +67,7 @@ const userData = useSelector(state=>state.doctorData);
                   <Form.Label>Email Address</Form.Label>
                   <Form.Control
                     type="email"
-                    placeholder="Enter Email Address"
+                    // placeholder="Enter Email Address"
                     value={userData&&userData.email}
                     disabled
                   />
@@ -77,7 +77,7 @@ const userData = useSelector(state=>state.doctorData);
                   <Form.Label>Address</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter Your Address"
+                    // placeholder="Enter Your Address"
                     disabled
                     value={userData&&userData.address}
                   />
@@ -97,16 +97,16 @@ const userData = useSelector(state=>state.doctorData);
                   <Form.Label>Doctor Department</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Doctor Department"
-                    disabled
+                    // placeholder="Doctor Department"
                     value={userData&& userData.doctorDepartment}
+                    disabled
                     />
                 </Form.Group>
                 <Form.Group className="col-lg-5" controlId="specialist">
                   <Form.Label>Specialist</Form.Label>
                   <Form.Control
                     type="test"
-                    placeholder="Enter Your Specialist"
+                    // placeholder="Enter Your Specialist"
                     disabled
                     value={userData&& userData.specialist}
                   />
@@ -123,10 +123,31 @@ const userData = useSelector(state=>state.doctorData);
                   <textarea
                     rows="2"
                     className=" p-2"
-                    placeholder="short Biography"
+                    // placeholder="short Biography"
                     style={{ width: `94%`, outline: "none" }}
                   >{userData && userData.shortBiography}</textarea>
                 </Form.Group>
+
+                <Form.Group className="col-lg-12" controlId="genderID">
+                  <Form.Label>Gender</Form.Label>
+                   <Form.Check
+                    disabled
+                    // checked ={userData.gender==="male"}
+                    checked
+                    type="radio"
+                    id="default-radio-male"
+                    label="Male"
+                    name="group1"
+                  />
+                  <Form.Check
+                    disabled
+                    // checked ={userData.gender==="female"}
+                    type="radio"
+                    id="default-radio-female"
+                    label="Female"
+                    name="group1"
+                  />
+                </Form.Group> 
              
                 <Form.Group className="col-lg-5">
                   <div className="d-flex gap-4  " style={{ height: "70px" }}>
