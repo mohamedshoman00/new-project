@@ -26,14 +26,18 @@ export const toggleLogin = () => {
 
 export const sessionCheck = () => {
   return async (disp) => {
-    const res = await axios.get(`${BASEURL}/sessioncheck`);
+    const res = await axios.get(`${BASEURL}/sessioncheck`, {
+      withCredentials: true,
+    });
     disp({ type: SESSIONCHECK, status: res.status });
   };
 };
 
 export const postLoginUser = (ele) => {
   return async (disp) => {
-    const res = await axios.post(`${BASEURL}/login`, ele);
+    const res = await axios.post(`${BASEURL}/login`, ele, {
+      withCredentials: true,
+    });
     console.log(res);
     disp({ type: POSTLOGIN, data: res.status });
   };
