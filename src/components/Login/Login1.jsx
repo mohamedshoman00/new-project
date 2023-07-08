@@ -52,25 +52,24 @@ const Login1 = () => {
     console.log(data);
     // dispatch(postLoginUser());
     // dispatch(sessionCheck(`200`));
-    if(checkUser===`200`)
-    nav("../user", { replace: true });
-    else if (checkUser === `201`)
-    nav("../admin", { replace: true });
-    else {
-            toast.success("invalid email or password", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+    // if(checkUser===`200`)
+    // nav("../user", { replace: true });
+    // else if (checkUser === `201`)
+    // nav("../admin", { replace: true });
+    // else {
+    //         toast.success("invalid email or password", {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "colored",
+    //   });
     }
     // <Redirect to="/" />
     // console.log(initialValues);
-  };
   return (
     <>
       <Col className={`col-lg-6 col-md-12 col-sm-12`}>
