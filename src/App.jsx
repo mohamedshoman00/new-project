@@ -128,7 +128,8 @@ function App() {
           theme="colored"
         />
         <Routes>
-{checkUser === "200" ? (<><h2>admin</h2></>  ): (checkUser === "201") ?<><h2>User</h2></> : (checkUser=== "203") ? <><h2>login</h2></>:<><h2>Not Found</h2></>}
+         
+{checkUser === "200" ? (<><Route path="/admin" element={<Admin />}/></>  ): (checkUser === "201") ?<><Route path="/user" element={<User />}/></> : (checkUser=== "203") ? <> <Route path="/login" element={<FormLogin />} /></>:<>      <Route path="forgot-password" element={<ForgotPassword1 />} /></>}
 
         </Routes>
       </AnimatePresence>
