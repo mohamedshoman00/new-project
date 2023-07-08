@@ -94,7 +94,7 @@ function App() {
     <Route path="forgot-password" element={<ForgotPassword1 />} /></>;
     }
   };
-  // useEffect(() => {
+  useEffect(() => {
   //   // toast.success("🦄 Wow so easy!", {
   //   //   position: "top-right",
   //   //   autoClose: 5000,
@@ -106,9 +106,9 @@ function App() {
   //   //   theme: "colored",
   //   // });
   //   // dispatch(sessionLogOut());
-  //   dispatch(sessionCheck());
+    dispatch(sessionCheck());
   //   RoutesApp();
-  // }, [checkLogin]);
+  }, [checkLogin]);
   return (
     <>
       <AnimatePresence>
