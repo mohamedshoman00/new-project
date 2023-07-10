@@ -15,8 +15,18 @@ import { IoPersonAddSharp } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { FaUserAlt } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  activeDoctor,
+  dactiveDoctor,
+  getAllDoctors,
+} from "../../redux/actions/appAction";
+import DoctorDetails from "./DoctorDetails";
 const DoctorList = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllDoctors());
+  }, []);
   const [doctors, setDoctors] = useState([
     {
       id: 1,
@@ -102,63 +112,86 @@ const DoctorList = () => {
   ]);
   const data = useSelector((state) => state.allDoctors);
   const [doctorsData, setDoctorsData] = useState([]);
+  const [doctorsData1, setDoctorsData1] = useState([]);
   useEffect(() => {
     setDoctorsData(data);
-    // data.map((e) => {
-    //   return { ...e, showDetails: false };
-    // });
+    setDoctorsData1(
+      data.map((e) => {
+        return { ...e, showDetails: false };
+      })
+    );
   }, [data]);
   // const [doctorsData] = data.map((e) => {
   //   return { ...e, showDetails: false };
   // });
-  console.log(doctorsData);
+  // console.log(doctorsData);
   const divRef = useRef();
   const menuRef = useRef();
   const [een, seteen] = useState(false);
-  // const handleDetails = (ele) => {
-  //   const doctor = [...doctorsData];
-  //   const newDocs = doctor.map((e) => {
-  //     return { ...e, showDetails: false };
-  //   });
-  //   const i = newDocs.findIndex((e) => e.id === ele.id);
-  //   newDocs[i] = {
-  //     ...newDocs[i],
-  //     showDetails: !newDocs[i].showDetails,
-  //   };
-  //   setDoctorsData(newDocs);
-  // };
-  // const showDetailsHandler = (e) => {
-  //   const ele = e.target.closest("div.details-div");
-  //   if (!ele) {
-  //     const doctor = [...doctorsData];
-  //     const findele = doctor.filter((e) => e.showDetails === true);
-  //     if (findele.length !== 0) {
-  //       const i = doctor.findIndex((e) => e.id === findele[0].id);
-  //       doctor[i] = { ...doctor[i], showDetails: !doctor[i].showDetails };
-  //       setDoctorsData(doctor);
-  //     }
-  //   }
-  // };
-
+  const [docMobile, setDocMobile] = useState(``);
+  const handleDetails = (ele) => {
+    const doctor = [...doctorsData1];
+    const newDocs = doctor.map((e) => {
+      return { ...e, showDetails: false };
+    });
+    const i = newDocs.findIndex((e) => e.mobile === ele.mobile);
+    newDocs[i] = {
+      ...newDocs[i],
+      showDetails: !newDocs[i].showDetails,
+    };
+    setDoctorsData1(newDocs);
+    // console.log(ele);
+  };
+  const showDetailsHandler = (e) => {
+    const ele = e.target.closest("div.details-div");
+    if (!ele) {
+      const doctor = [...doctorsData1];
+      const findele = doctor.filter((e) => e.showDetails === true);
+      if (findele.length !== 0) {
+        const i = doctor.findIndex((e) => e.mobile === findele[0].mobile);
+        doctor[i] = { ...doctor[i], showDetails: !doctor[i].showDetails };
+        setDoctorsData1(doctor);
+      }
+    }
+    // console.log(docMobile);
+    // console.log(ele);
+  };
   const handleActive = (i) => {
-    console.log(i);
+    // console.log(i);
+    const doctor = [...doctorsData];
+    // console.log(doctor[i]);
+    if (doctor[i].isactive) {
+      dispatch(dactiveDoctor(doctor[i].mobile));
+    } else {
+      dispatch(activeDoctor(doctor[i].mobile));
+    }
+    dispatch(getAllDoctors());
     // const doctor = [...doctorsData];
     // doctor[i] = { ...doctor[i], isactive: !doctor[i].isactive };
     // setDoctorsData(doctor);
+  };
+  // console.log(doctorsData1);
+  const handleDoctorDetails = (e) => {
+    const ele = e.target.closest(`div.doctor-details`);
+    if (!ele) {
+      setDocMobile(``);
+    }
   };
   return (
     <>
       <div
         className=" w-100"
         style={{
+          position: "relative",
           backgroundColor: "#f1f5fc",
           padding: "15px",
+          minHeight: "92.8vh",
         }}
-        // onClick={showDetailsHandler}
+        onClick={showDetailsHandler}
       >
         {/* Doctors List */}
         <div className="w-100 d-flex flex-wrap">
-          {doctorsData.map((e, i) => (
+          {doctorsData1.map((e, i) => (
             <Col lg={4} md={4} sm={6} className="px-3 px-sm-2 doc-card" key={i}>
               <Card style={{ marginBottom: "2rem" }}>
                 <div
@@ -191,7 +224,7 @@ const DoctorList = () => {
                             color: "#878793",
                           }}
                         >
-                          {e.doctorDepartment}
+                          {e.specialist}
                         </p>
                         <p
                           className="mt-2 d-flex align-items-center"
@@ -210,7 +243,7 @@ const DoctorList = () => {
                   <div className="details-div" list-id={i}>
                     <HiDotsVertical
                       style={{ cursor: "pointer" }}
-                      // onClick={() => handleDetails(e)}
+                      onClick={() => handleDetails(e)}
                     />
                     {e.showDetails && (
                       <motion.div
@@ -240,10 +273,13 @@ const DoctorList = () => {
                             <NavLink
                               className="p-2"
                               style={{ fontSize: "12px", color: "#34334a" }}
+                              onClick={() => {
+                                setDocMobile(e.mobile);
+                              }}
                             >
                               View Details
                             </NavLink>
-                            <NavLink
+                            {/* <NavLink
                               className="p-2"
                               style={{ fontSize: "12px", color: "#34334a" }}
                             >
@@ -254,7 +290,7 @@ const DoctorList = () => {
                               style={{ fontSize: "12px", color: "#34334a" }}
                             >
                               Delete
-                            </NavLink>
+                            </NavLink> */}
                           </ListGroupItem>
                         </ListGroup>
                       </motion.div>
@@ -264,6 +300,23 @@ const DoctorList = () => {
               </Card>
             </Col>
           ))}
+          {docMobile !== `` && (
+            <div
+              // className="d-flex justify-content-center align items-center"
+              style={{
+                position: "absolute",
+                width: "100%",
+                height: "92.8vh",
+                background: "rgb(0 0 0 / 40%)",
+                top: "0",
+                left: "0",
+                zIndex: "1000",
+              }}
+              onClick={handleDoctorDetails}
+            >
+              <DoctorDetails curr={docMobile} setDocMobile={setDocMobile} />
+            </div>
+          )}
         </div>
         <div className="d-flex flex-lg-row flex-sm-column p-lg-0 pe-sm-3">
           {/* Doctors Requests Approve Or Not */}
@@ -296,7 +349,7 @@ const DoctorList = () => {
                 </tr>
               </thead>
               <tbody>
-                {doctors.map((e, i) => (
+                {doctorsData.map((e, i) => (
                   <tr key={i}>
                     <td className="col-8">
                       <div className="d-flex align-items-center">
@@ -315,7 +368,7 @@ const DoctorList = () => {
                               margin: "0",
                             }}
                           >
-                            {e.name}
+                            {`${e.firstName} ${e.lastName}`}
                           </h6>
                           <p
                             className="my-1"
@@ -324,7 +377,7 @@ const DoctorList = () => {
                               color: "#878793",
                             }}
                           >
-                            {e.jopTitle}
+                            {e.specialist}
                           </p>
                         </div>
                       </div>
@@ -339,6 +392,9 @@ const DoctorList = () => {
                       <Button
                         variant="primary"
                         style={{ opacity: "0.8", margin: "0 15px" }}
+                        onClick={() => {
+                          setDocMobile(e.mobile);
+                        }}
                       >
                         <FaUserAlt
                           // onClick={(e)={oncl(e)}
@@ -406,7 +462,7 @@ const DoctorList = () => {
                           color: "#878793",
                         }}
                       >
-                        {e.doctorDepartment}
+                        {e.specialist}
                       </p>
                     </div>
                     <Button

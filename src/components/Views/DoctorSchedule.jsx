@@ -211,6 +211,7 @@ const DoctorSchedule = () => {
         style={{
           backgroundColor: "#f1f5fc",
           padding: "15px",
+          minHeight: "92.8vh",
         }}
       >
         <Card className="w-100" style={{ overflowX: "auto" }}>

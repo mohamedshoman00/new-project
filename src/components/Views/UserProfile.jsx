@@ -10,8 +10,11 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
-import { updateAdminAcc } from "../../redux/actions/appAction";
+import { getAdminAcc, updateAdminAcc } from "../../redux/actions/appAction";
 const UserProfile = () => {
+  useEffect(() => {
+    dispatch(getAdminAcc());
+  }, []);
   const data = useSelector((state) => state.admin);
   const [adminData, setAdminData] = useState({});
   const [updateData, setUpdateData] = useState({});
@@ -36,7 +39,8 @@ const UserProfile = () => {
     if (Object.keys(updated).length !== 0) {
       console.log(`Data Changed`);
       dispatch(updateAdminAcc(updated));
-      window.location.reload();
+      dispatch(getAdminAcc());
+      // window.location.reload();
     }
   };
 
@@ -47,6 +51,7 @@ const UserProfile = () => {
         style={{
           backgroundColor: "#f1f5fc",
           padding: "15px",
+          minHeight: "92.8vh",
         }}
       >
         <Col lg={8} md={8}>
@@ -100,9 +105,10 @@ const UserProfile = () => {
                   type="text"
                   placeholder="Phone Number"
                   value={updateData.mobile}
-                  onChange={(e) =>
-                    setUpdateData({ ...updateData, mobile: e.target.value })
-                  }
+                  // onChange={(e) =>
+                  //   setUpdateData({ ...updateData, mobile: e.target.value })
+                  // }
+                  disabled
                 />
               </Form.Group>
               {/* <Form.Group className="col-lg-6" controlId="nationalID">

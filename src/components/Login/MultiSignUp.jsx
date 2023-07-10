@@ -3,10 +3,11 @@ import * as Yup from "yup";
 import { Button, Card, Container, Col, Alert } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleLogin } from "../../redux/actions/appAction";
+import { createNewAcc, toggleLogin } from "../../redux/actions/appAction";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { TextField } from "formik-material-ui";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 const MultiSignUp = () => {
   const dispatch = useDispatch();
   const islogin = useSelector((state) => state.loginOrRegister);
@@ -16,15 +17,16 @@ const MultiSignUp = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    nationalID: "",
-    mobileNumber: "",
+    Nid: "",
+    mobile: "",
     address: "",
     dateOfBirth: " ",
     gender: "",
     doctorDepartment: "",
     specialist: "",
-    doctorImg: "",
-    nationalIdImage: "",
+    doctorImage: "",
+    NidPhoto: "",
+    shortBiography: "",
   };
   const [step, setStep] = useState(0);
   const formTitles = ["Sign Up", "Personal Info", "Job Info"];
@@ -66,13 +68,13 @@ const MultiSignUp = () => {
         style: { width: "100%" },
         type: "text",
         label: "National ID",
-        name: "nationalID",
+        name: "Nid",
       },
       {
         style: { width: "100%" },
         type: "text",
         label: "Mobile Number",
-        name: "mobileNumber",
+        name: "mobile",
       },
       {
         style: { width: "100%" },
@@ -158,13 +160,19 @@ const MultiSignUp = () => {
         style: { width: "100%" },
         type: "file",
         label: "Profile Image",
-        name: "doctorImg",
+        name: "doctorImage",
       },
       {
         style: { width: "100%" },
         type: "file",
         label: "N-ID Image",
-        name: "nationalIdImage",
+        name: "NidPhoto",
+      },
+      {
+        style: { width: "100%" },
+        type: "textarea",
+        label: "shortBiography",
+        name: "shortBiography",
       },
     ],
   ];
@@ -172,28 +180,25 @@ const MultiSignUp = () => {
     Yup.object().shape({
       firstName: Yup.string().required("firstName is Required"),
       lastName: Yup.string().required("lastName is Required"),
-      email: Yup.string()
-        .email()
-        .required("Email is required"),
-      password: Yup.string()
-        .min(6)
-        .required("Password is required"),
+      email: Yup.string().email().required("Email is required"),
+      password: Yup.string().min(6).required("Password is required"),
       confirmPassword: Yup.string()
         .oneOf([Yup.ref("password"), null], "Password must match")
         .required("Password is required"),
     }),
     Yup.object().shape({
-      nationalID: Yup.string().required("NationalID is Required"),
-      mobileNumber: Yup.string().required("Mobile is required"),
+      Nid: Yup.string().required("NationalID is Required"),
+      mobile: Yup.string().required("Mobile is required"),
       address: Yup.string().required("Address is Required"),
       dateOfBirth: Yup.date().required("date of birth is Required"),
       gender: Yup.string().required("gender is Required"),
     }),
     Yup.object().shape({
       doctorDepartment: Yup.string().required("Department is Required"),
-      specialist: Yup.string().required("Specialist is Required"),
-      doctorImg: Yup.string().required("Doctor Image is Required"),
-      nationalIdImage: Yup.string().required("NationalID Image is Required"),
+      specialist: Yup.string().required("specialist is Required"),
+      doctorImage: Yup.string().required("Doctor Image is Required"),
+      NidPhoto: Yup.string().required("NationalID Image is Required"),
+      shortBiography: Yup.string().required("shortBiography is Required"),
     }),
   ];
 
@@ -201,7 +206,45 @@ const MultiSignUp = () => {
     if (step !== formTitles.length - 1) {
       onSubmitProps.setSubmitting(false);
       setStep((curr) => curr + 1);
-    } else console.log(values);
+    } else {
+      const data = {
+        ...values,
+        isadmin: false,
+        isactive: false,
+        rate: 0,
+        ratearr: [],
+      };
+      // console.log(data);
+      try {
+        delete data.confirmPassword;
+        // console.log(data);
+        dispatch(createNewAcc(data));
+        toast.success(`Successfull Sign Up`, {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        setTimeout(() => {
+          dispatch(toggleLogin());
+        }, 1500);
+      } catch (error) {
+        toast.error(`${error}`, {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+    }
   };
   return (
     <>

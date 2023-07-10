@@ -4,8 +4,10 @@ import {
   BASEURL,
   GETADMINACCOUNT,
   GETALLDOCTORS,
+  GETALLPATIENTSADMIN,
   GETDOCTORDATA,
   GETDOCTORTIMETABLE,
+  GETDOCTORTIMETABLEADMIN,
   GETUSER,
   LOGIN,
   LOGOUT,
@@ -18,11 +20,11 @@ import {
 export const changeDate = (date) => {
   const dateOfBirth = new Date(date);
   const mm =
-    dateOfBirth.getUTCMonth + 1 > 9
+    dateOfBirth.getUTCMonth() > 9
       ? `${dateOfBirth.getUTCMonth() + 1}`
       : `0${dateOfBirth.getUTCMonth() + 1}`;
   const dd =
-    dateOfBirth.getUTCMonth + 1 > 9
+    dateOfBirth.getDate() + 1 > 9
       ? `${dateOfBirth.getDate()}`
       : `0${dateOfBirth.getDate()}`;
   const ele = `${dateOfBirth.getFullYear()}-${mm}-${dd}`;
@@ -114,6 +116,13 @@ export const getDoctorTimeTable = () => {
     disp({ type: GETDOCTORTIMETABLE, data: res.data });
   };
 };
+export const updateDoctorTimeTable = (data) => {
+  return async (disp) => {
+    const res = await axios.patch(`/doctor/updatetimetable`, data, {
+      withCredentials: true,
+    });
+  };
+};
 
 export const getAllDoctors = () => {
   return async (disp) => {
@@ -121,5 +130,81 @@ export const getAllDoctors = () => {
       withCredentials: true,
     });
     disp({ type: GETALLDOCTORS, data: res.data });
+  };
+};
+export const activeDoctor = (mobile) => {
+  return async (disp) => {
+    const res = await axios.patch(`/admin/activedoctor/${mobile}`, {
+      withCredentials: true,
+    });
+    // getAllDoctors();
+    // disp({ type: GETALLDOCTORS, data: res.data });
+  };
+};
+export const dactiveDoctor = (mobile) => {
+  return async (disp) => {
+    const res = await axios.patch(`/admin/dactivedoctor/${mobile}`, {
+      withCredentials: true,
+    });
+    // getAllDoctors();
+    // disp({ type: GETALLDOCTORS, data: res.data });
+  };
+};
+export const getAllPatientsAdmin = () => {
+  return async (disp) => {
+    const res = await axios.get(`/admin/getallpatientaccount`, {
+      withCredentials: true,
+    });
+    disp({ type: GETALLPATIENTSADMIN, data: res.data });
+  };
+};
+export const updatePatient = (id) => {
+  return async (disp) => {
+    const res = await axios.patch(`/admin/updatepatientaccount/${id}`, {
+      withCredentials: true,
+    });
+    // disp({ type: GETALLPATIENTSADMIN, data: res.data });
+  };
+};
+export const deletePatient = (id) => {
+  return async (disp) => {
+    const res = await axios.delete(`/admin/deletepatienaccount/${id}`, {
+      withCredentials: true,
+    });
+    console.log(res);
+    // disp({ type: GETALLPATIENTSADMIN, data: res.data });
+  };
+};
+export const createNewAcc = (ele) => {
+  return async (disp) => {
+    const res = await axios.post(`/doctor/newaccount`, ele, {
+      withCredentials: true,
+    });
+    console.log(res);
+    // disp({ type: GETALLPATIENTSADMIN, data: res.data });
+  };
+};
+
+export const getDoctorTimeTableAdmin = (mobile) => {
+  return async (disp) => {
+    const res = await axios.get(`/admin/getdoctoretimetable/${mobile}`, {
+      withCredentials: true,
+    });
+    disp({ type: GETDOCTORTIMETABLEADMIN, data: res.data });
+  };
+};
+export const updateDoctorTimeTableAdmin = (mobile, data) => {
+  return async (disp) => {
+    const res = await axios.patch(
+      `/admin/updatedoctoretimetable/${mobile}`,
+      data,
+      {
+        withCredentials: true,
+      }
+    );
+    console.log(res);
+    console.log(data);
+    console.log(mobile);
+    // disp({ type: GETDOCTORTIMETABLEADMIN, data: res.data });
   };
 };

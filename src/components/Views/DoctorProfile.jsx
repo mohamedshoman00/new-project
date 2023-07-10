@@ -17,6 +17,7 @@ import {
 } from "../../redux/actions/appAction";
 import { useRef } from "react";
 import { replace } from "formik";
+import { toast } from "react-toastify";
 const DoctorProfile = () => {
   const location = useLocation();
   const [date, setdate] = useState();
@@ -42,7 +43,17 @@ const DoctorProfile = () => {
     if (oldData.shortBiography !== textAreaState)
       updatedData = { ...updatedData, shortBiography: textAreaState };
     if (Object.keys(updatedData).length !== 0) {
-      console.log(`Data Changed`);
+      // console.log(`Data Changed`);
+      toast.success(`Data Changed`, {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       dispatch(updateDoctorData(updatedData));
       window.location.reload();
     }
@@ -56,6 +67,7 @@ const DoctorProfile = () => {
           style={{
             backgroundColor: "#f1f5fc",
             padding: "15px",
+            minHeight: "92.8vh",
           }}
         >
           <Col>

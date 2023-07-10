@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import DashBoard from "./components/Views/DashBoard";
 import FormLogin from "./pages/FormLogin";
 import { AnimatePresence } from "framer-motion";
 import ForgotPassword from "./components/Login/oldLogin/ForgotPassword";

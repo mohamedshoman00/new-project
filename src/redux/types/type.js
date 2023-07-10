@@ -1,12 +1,15 @@
 export const ALLDATA = "ALLDATA";
-export const BASEURL = "https://localhost:4009";
+export const BASEURL = "https://localhost:8000";
 export const POSTLOGIN = "POSTLOGIN";
 export const SESSIONCHECK = "SESSIONCHECK";
 // export const GETUSER = "/getaccount";
 export const TOGGLE = "TOGGLE";
 export const LOGOUT = "LOGOUT";
+export const NEWACCOUNT = "NEWACCOUNT";
 export const GETADMINACCOUNT = "GETADMINACCOUNT";
 export const UPDATED = "UPDATED";
 export const GETDOCTORDATA = "GETDOCTORDATA";
 export const GETDOCTORTIMETABLE = "GETDOCTORTIMETABLE";
+export const GETDOCTORTIMETABLEADMIN = "GETDOCTORTIMETABLEADMIN";
 export const GETALLDOCTORS = "GETALLDOCTORS";
+export const GETALLPATIENTSADMIN = "GETALLPATIENTSADMIN";

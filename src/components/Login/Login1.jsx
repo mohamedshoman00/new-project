@@ -48,24 +48,36 @@ const Login1 = () => {
   const nav = useNavigate();
   // const checkUser = useSelector(state=>state.loginStatus);
 
-  const handleSubmit  = async(e) => {
+  const handleSubmit = async (e) => {
     // event.preventDefault();
     // const data = {email:emailRef.current,password: passwordRef.current};
     // console.log(data);
     // console.log(e);
     try {
       // Dispatch the first function and wait for it to complete
-    //  dispatch(postLoginUser({email:"www@www.com",password:"wwwwww"}));
-     await dispatch(postLoginUser(e));
+      //  dispatch(postLoginUser({email:"www@www.com",password:"wwwwww"}));
       // Dispatch the second function
       // window.location.reload();
       // window.location.replace("/");
       // dispatch(sessionCheck());
-      nav("../",{replace:true});
-    } catch (error) {
-        toast.error("invalid email or password", {
+      await dispatch(postLoginUser(e));
+      toast.success(`Successfull Sign In`, {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      // setTimeout(() => {
+      nav("../", { replace: true });
+      // }, 3000);
+    } catch (error) {
+      toast.error("invalid email or password", {
+        position: "top-right",
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -74,7 +86,6 @@ const Login1 = () => {
         theme: "colored",
       });
     }
-    ;
     // window.location.reload();
     // console.log(location);
     // const newLocation = {...location , pathname:"/"};
@@ -93,9 +104,9 @@ const Login1 = () => {
     //     progress: undefined,
     //     theme: "colored",
     //   });
-    }
-    // <Redirect to="/" />
-    // console.log(initialValues);
+  };
+  // <Redirect to="/" />
+  // console.log(initialValues);
   return (
     <>
       <Col className={`col-lg-6 col-md-12 col-sm-12`}>
