@@ -1,8 +1,10 @@
 import {
   ALLDATA,
   GETADMINACCOUNT,
+  GETALLDEACTIVEDOCTORS,
   GETALLDOCTORS,
   GETALLPATIENTSADMIN,
+  GETAPPOINTMENT,
   GETDOCTORDATA,
   GETDOCTORTIMETABLE,
   GETDOCTORTIMETABLEADMIN,
@@ -11,6 +13,7 @@ import {
   POSTLOGIN,
   SESSIONCHECK,
   TOGGLE,
+  DOCTORAPPOINTMENT,
 } from "../types/type";
 
 const Initial = {
@@ -22,7 +25,11 @@ const Initial = {
   allDoctors: [],
   adminAllPatient: [],
   doctorTimeTableAdmin: {},
+  allAppointment: [],
+  allDactiveDoctors: [],
+  DoctorAppointment: [],
 };
+
 export const appReducer = (state = Initial, action) => {
   switch (action.type) {
     case SESSIONCHECK:
@@ -45,6 +52,12 @@ export const appReducer = (state = Initial, action) => {
       return { ...state, doctorTimeTableAdmin: action.data };
     case GETALLDOCTORS:
       return { ...state, allDoctors: action.data };
+    case GETAPPOINTMENT:
+      return { ...state, allAppointment: action.data };
+    case GETALLDEACTIVEDOCTORS:
+      return { ...state, allDactiveDoctors: action.data };
+    case DOCTORAPPOINTMENT:
+      return { ...state, DoctorAppointment: action.data };
     default:
       return { ...state };
   }

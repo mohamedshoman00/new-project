@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 const MultiSignUp = () => {
   const dispatch = useDispatch();
   const islogin = useSelector((state) => state.loginOrRegister);
-  const initialValues = {
+  let initialValues = {
     firstName: "",
     lastName: "",
     email: "",
@@ -20,7 +20,7 @@ const MultiSignUp = () => {
     Nid: "",
     mobile: "",
     address: "",
-    dateOfBirth: " ",
+    dateOfBirth: "",
     gender: "",
     doctorDepartment: "",
     specialist: "",
@@ -202,7 +202,7 @@ const MultiSignUp = () => {
     }),
   ];
 
-  const submitHandler = (values, onSubmitProps) => {
+  const submitHandler = (values, onSubmitProps, { resetForm }) => {
     if (step !== formTitles.length - 1) {
       onSubmitProps.setSubmitting(false);
       setStep((curr) => curr + 1);
@@ -229,6 +229,7 @@ const MultiSignUp = () => {
           progress: undefined,
           theme: "colored",
         });
+        resetForm();
         setTimeout(() => {
           dispatch(toggleLogin());
         }, 1500);

@@ -36,12 +36,13 @@ function App() {
   const dispatch = useDispatch();
   const checkUser = useSelector((state) => state.loginStatus);
   const checkLogin = useSelector((state) => state.user);
-  console.log(checkUser);
+  // console.log(checkUser);
   const RoutesApp = () => {
     if (checkUser === 201) {
       return (
         <>
-          <Route path="*" element={<Navigate to="/admin" replace />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="/" element={<Navigate to="/admin" replace />} />
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
           {/* <Route path="/" element={<Navigate to="/admin" replace />} /> */}
           <Route path="/admin" element={<Admin />}>
@@ -52,7 +53,7 @@ function App() {
             <Route path="/admin/user-profile" element={<UserProfile />} />
             <Route path="/admin/doctor" element={<DoctorList />} />
             <Route path="/admin/patient" element={<PatientList />} />
-            <Route path="/admin/doctor-schedule" element={<DoctorSchedule />} />
+            {/* <Route path="/admin/doctor-schedule" element={<DoctorSchedule />} /> */}
             <Route
               path="/admin/doctor-time-table"
               element={<DoctorTimeTable />}
@@ -67,7 +68,9 @@ function App() {
     } else if (checkUser === 200) {
       return (
         <>
-          <Route path="*" element={<Navigate to="/user" replace />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
+          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="/" element={<Navigate to="/user" replace />} />
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
           {/* <Route path="/" element={<Navigate to="/user" replace />} /> */}
           <Route path="/user" element={<User />}>
@@ -91,10 +94,11 @@ function App() {
     } else if (checkUser === 203) {
       return (
         <>
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="/" element={<Navigate to="/login" replace />} />
           {/* <Route path="/" element={<Navigate to="/login" replace />} /> */}
           <Route path="/login" element={<FormLogin />} />
           <Route path="forgot-password" element={<ForgotPassword1 />} />
+          <Route path="*" element={<NotFound />} />
         </>
       );
     } else {
@@ -116,27 +120,7 @@ function App() {
     dispatch(sessionCheck());
     // RoutesApp();
   }, [checkLogin]);
-  const fff = () => {
-    return checkUser === "200" ? (
-      <>
-        <Route path="/" element={<Admin />} />
-      </>
-    ) : checkUser === "201" ? (
-      <>
-        <Route path="/" element={<User />} />
-      </>
-    ) : checkUser === "203" ? (
-      <>
-        {" "}
-        <Route path="/" element={<FormLogin />} />
-      </>
-    ) : (
-      <>
-        {" "}
-        <Route path="/" element={<ForgotPassword1 />} />
-      </>
-    );
-  };
+
   return (
     <>
       <AnimatePresence>

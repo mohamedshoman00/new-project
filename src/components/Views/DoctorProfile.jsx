@@ -109,7 +109,8 @@ const DoctorProfile = () => {
                     placeholder="Enter Mobile Number"
                     // ref={mobileRef}
                     value={userData && mobileState}
-                    onChange={(ele) => setMobileState(ele.target.value)}
+                    disabled
+                    // onChange={(ele) => setMobileState(ele.target.value)}
                   />
                 </Form.Group>
                 <Form.Group className="col-lg-5" controlId="email">

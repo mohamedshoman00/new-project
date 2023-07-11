@@ -14,13 +14,18 @@ import { BiNotepad } from "react-icons/bi";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getDoctorData, getDoctorTimeTable } from "../redux/actions/appAction";
+import {
+  getDoctorAppointments,
+  getDoctorData,
+  getDoctorTimeTable,
+} from "../redux/actions/appAction";
 
 const User = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getDoctorData());
     dispatch(getDoctorTimeTable());
+    dispatch(getDoctorAppointments());
   }, []);
   const menu = [
     {

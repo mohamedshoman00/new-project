@@ -13,41 +13,74 @@ import {
 } from "../../redux/actions/appAction";
 
 const DoctorTimeTable = () => {
+  const [curr, setCurr] = useState(0);
   const [docdata, setdocdata] = useState({});
   const dispatch = useDispatch();
   const data = useSelector((state) => state.allDoctors);
   const currTime = useSelector((state) => state.doctorTimeTableAdmin);
   const [currentDoctor, setCurrentDoctor] = useState({});
   const [currDoctorTimeTable, setCurrDoctorTimeTable] = useState({});
-  // console.log(currentDoctor);
-  // console.log(currDoctorTimeTable);
+
   useEffect(() => {
     dispatch(getAllDoctors());
+    dispatch(getDoctorTimeTableAdmin(data[`${curr}`]?.mobile));
+    // dispatch(getDoctorTimeTableAdmin());
+    // setCurrentDoctor({ ...data[`${curr}`] });
+    // dispatch(getDoctorTimeTableAdmin(data[`${curr}`]?.mobile));
   }, []);
+  // console.log(data);
   useEffect(() => {
-    setCurrentDoctor({ ...data[0] });
-  }, [data]);
+    dispatch(getDoctorTimeTableAdmin(data[`${curr}`]?.mobile));
+    // console.log(curr);
+    setCurrentDoctor({ ...data[`${curr}`] });
+  }, [data, curr]);
   useEffect(() => {
-    if (Object.keys(currentDoctor).length > 0) {
-      dispatch(getDoctorTimeTableAdmin(currentDoctor.mobile));
-    }
-  }, [currentDoctor]);
-  useEffect(() => {
+    // dispatch(getDoctorTimeTableAdmin(data[`${curr}`]?.mobile));
+    console.log(curr);
     setCurrDoctorTimeTable({ ...currTime });
-  }, [currTime]);
-  useEffect(() => {
-    if (Object.keys(currentDoctor).length > 0) {
+    if (Object.keys(currTime).length > 0) {
       setdocdata({
-        ...currDoctorTimeTable,
+        ...currTime,
       });
     }
-  }, [currDoctorTimeTable]);
+  }, [currTime, curr]);
 
+  // useEffect(() => {
+  // if (Object.keys(currentDoctor).length === 0) {
+  // console.log(curr);
+  // setCurrentDoctor({ ...data[`${curr}`] });
+  // dispatch(getDoctorTimeTableAdmin(data[`${curr}`]?.mobile));
+  // setCurrDoctorTimeTable(currTime);
+  // if (Object.keys(currTime).length > 0) {
+  //   setdocdata({
+  //     ...currTime,
+  //   });
+  // }
+  // console.log(currentDoctor);
+  // console.log(currDoctorTimeTable);
+  // console.log(docdata);
+  // const re = async () => {
+  // console.log(data[`${curr}`].mobile);
+  // }, [curr]);
+
+  // console.log(currentDoctor);
+  // console.log(currDoctorTimeTable);
+
+  // useEffect(() => {
+  // setCurrDoctorTimeTable({ ...currTime });
+
+  // }, [currTime]);
+  // useEffect(() => {
+  // if (Object.keys(currTime).length > 0) {
+  //   setdocdata({
+  //     ...currTime,
+  //   });
+  // }
+  // }, [changeHandler]);
+  console.log(currDoctorTimeTable);
   const [checked, setchecked] = useState(true);
-
   const handleChange = (e) => {
     //clone
-
     const alldata = { ...docdata };
     for (let key in alldata) {
       if (key === e.target.name) {
@@ -57,9 +90,10 @@ const DoctorTimeTable = () => {
     }
     setdocdata(alldata);
   };
+  // console.log(docdata);
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(docdata);
+    // console.log(docdata);
     let updatedData = {};
     if (
       currTime.sat !== docdata.sat ||
@@ -138,18 +172,37 @@ const DoctorTimeTable = () => {
         fritime: { ...docdata.fritime },
       };
     }
-    console.log(updatedData);
+    // console.log(updatedData);
     if (Object.keys(updatedData).length > 0) {
       dispatch(updateDoctorTimeTableAdmin(currentDoctor.mobile, updatedData));
-      dispatch(getDoctorTimeTableAdmin(currentDoctor.mobile));
+      // dispatch(getAllDoctors());
+      // dispatch(getDoctorTimeTableAdmin(currentDoctor?.mobile));
+      dispatch(getDoctorTimeTableAdmin(data[`${curr}`]?.mobile));
+      console.log(currentDoctor.mobile);
     }
 
     // handleSubmit.bind();
   };
+  // console.log(currentDoctor);
+  // console.log(currDoctorTimeTable);
   const changeHandler = (event) => {
-    const curr = data.findIndex((e) => e.mobile === event.target.value);
-    setCurrentDoctor({ ...data[curr] });
+    console.log(event.target.value);
+    setCurr(data.findIndex((e) => e.mobile === event.target.value));
   };
+  // window.location.reload();
+  // console.log(event.target.value);
+  // console.log({ ...data[curr] });
+  // setCurrentDoctor({ ...data[curr] });/
+  // console.log(currentDoctor);
+  // console.log(curr);
+  // useEffect(() => {
+  //   // if (Object.keys(currentDoctor).length > 0) {
+  //   console.log(currentDoctor.mobile);
+  //   // dispatch(getDoctorTimeTableAdmin(currentDoctor.mobile));
+  //   dispatch(getDoctorTimeTableAdmin(currentDoctor.mobile));
+  //   console.log(currTime);
+  //   // }
+  // }, [changeHandler && currentDoctor]);
   return (
     <>
       <div

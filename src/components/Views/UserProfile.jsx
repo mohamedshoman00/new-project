@@ -199,7 +199,8 @@ const UserProfile = () => {
             </div>
           </Card>
         </Col>
-        <Row className="ps-3 w-100">
+        {/* Update Password Form */}
+        {/* <Row className="ps-3 w-100">
           <Card className="p-2 my-4">
             <div
               className="d-flex align-items-center justify-content-between"
@@ -207,12 +208,6 @@ const UserProfile = () => {
             >
               <h3 className="p-3">Update Password</h3>
             </div>
-            {/* <div
-                className="d-flex align-items-center justify-content-between"
-                style={{ borderBottom: "1px solid rgba(0, 0, 0,.1)" }}
-              >
-                <h3 className="p-3">My Doctors</h3>
-              </div> */}
             <Form
               className="p-4 d-flex flex-wrap align-items-center  gap-4"
               style={{
@@ -259,7 +254,7 @@ const UserProfile = () => {
               </div>
             </Form>
           </Card>
-        </Row>
+        </Row> */}
       </div>
     </>
   );

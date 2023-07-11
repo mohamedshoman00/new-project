@@ -76,35 +76,35 @@ const PatientList = () => {
         Header: "Email",
         accessor: "email",
       },
-      {
-        Header: "Action",
-        accessor: "action",
-        Cell: ({ row }) => (
-          <div className="d-flex hidden-print">
-            <FaPencilAlt
-              className="me-lg-3 me-sm-2"
-              style={{
-                cursor: "pointer",
-                fontSize: "20px",
-                color: "#009efb",
-              }}
-            />
-            <FaRegTrashAlt
-              className="me-lg-3 me-sm-2"
-              style={{
-                cursor: "pointer",
-                fontSize: "20px",
-                color: "#d9534f",
-              }}
-              onClick={() => {
-                // console.log(row.original[`_id`]);
-                dispatch(deletePatient(row.original[`_id`]));
-                dispatch(getAllPatientsAdmin());
-              }}
-            />
-          </div>
-        ),
-      },
+      // {
+      //   Header: "Action",
+      //   accessor: "action",
+      //   Cell: ({ row }) => (
+      //     <div className="d-flex hidden-print">
+      //       <FaPencilAlt
+      //         className="me-lg-3 me-sm-2"
+      //         style={{
+      //           cursor: "pointer",
+      //           fontSize: "20px",
+      //           color: "#009efb",
+      //         }}
+      //       />
+      //       <FaRegTrashAlt
+      //         className="me-lg-3 me-sm-2"
+      //         style={{
+      //           cursor: "pointer",
+      //           fontSize: "20px",
+      //           color: "#d9534f",
+      //         }}
+      //         onClick={() => {
+      //           // console.log(row.original[`_id`]);
+      //           dispatch(deletePatient(row.original[`_id`]));
+      //           dispatch(getAllPatientsAdmin());
+      //         }}
+      //       />
+      //     </div>
+      //   ),
+      // },
     ],
     []
   );

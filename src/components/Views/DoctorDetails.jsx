@@ -104,12 +104,12 @@ const DoctorDetails = ({ curr, setDocMobile }) => {
             </Form.Group>
             <Form.Group className="col-lg-6" controlId="mobile">
               <Form.Label>Mobile Number</Form.Label>
-
               <Form.Control
                 type="text"
                 placeholder="Enter Mobile Number"
                 // ref={mobileRef}
                 // value={userData && mobileState}
+                disabled
                 value={userData && userData.mobile}
                 // onChange={(ele) => setMobileState(ele.target.value)}
               />

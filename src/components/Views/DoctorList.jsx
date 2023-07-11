@@ -20,12 +20,14 @@ import {
   activeDoctor,
   dactiveDoctor,
   getAllDoctors,
+  getDactiveDoctors,
 } from "../../redux/actions/appAction";
 import DoctorDetails from "./DoctorDetails";
 const DoctorList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllDoctors());
+    dispatch(getDactiveDoctors());
   }, []);
   const [doctors, setDoctors] = useState([
     {
@@ -111,8 +113,10 @@ const DoctorList = () => {
     },
   ]);
   const data = useSelector((state) => state.allDoctors);
+  const dactive = useSelector((state) => state.allDactiveDoctors);
   const [doctorsData, setDoctorsData] = useState([]);
   const [doctorsData1, setDoctorsData1] = useState([]);
+  const [doctorsData2, setDoctorsData2] = useState([]);
   useEffect(() => {
     setDoctorsData(data);
     setDoctorsData1(
@@ -121,6 +125,9 @@ const DoctorList = () => {
       })
     );
   }, [data]);
+  useEffect(() => {
+    setDoctorsData2(dactive);
+  }, [data, dactive]);
   // const [doctorsData] = data.map((e) => {
   //   return { ...e, showDetails: false };
   // });
@@ -159,16 +166,22 @@ const DoctorList = () => {
   const handleActive = (i) => {
     // console.log(i);
     const doctor = [...doctorsData];
-    // console.log(doctor[i]);
     if (doctor[i].isactive) {
       dispatch(dactiveDoctor(doctor[i].mobile));
     } else {
       dispatch(activeDoctor(doctor[i].mobile));
     }
     dispatch(getAllDoctors());
-    // const doctor = [...doctorsData];
-    // doctor[i] = { ...doctor[i], isactive: !doctor[i].isactive };
-    // setDoctorsData(doctor);
+    dispatch(getDactiveDoctors());
+  };
+  const handleActive1 = (i) => {
+    console.log(i);
+    // const doctor = [...doctorsData2];
+    // const fil= doctor.filter
+    dispatch(activeDoctor(i));
+    //   dispatch(activeDoctor(doctor[i].mobile));
+    dispatch(getAllDoctors());
+    dispatch(getDactiveDoctors());
   };
   // console.log(doctorsData1);
   const handleDoctorDetails = (e) => {
@@ -349,7 +362,7 @@ const DoctorList = () => {
                 </tr>
               </thead>
               <tbody>
-                {doctorsData.map((e, i) => (
+                {doctorsData2.map((e, i) => (
                   <tr key={i}>
                     <td className="col-8">
                       <div className="d-flex align-items-center">
@@ -386,6 +399,9 @@ const DoctorList = () => {
                       <Button
                         className="btn-isActive"
                         style={{ opacity: "0.95" }}
+                        onClick={() => {
+                          handleActive1(e.mobile);
+                        }}
                       >
                         <HiCheck style={{ fontSize: "18px" }} />
                       </Button>

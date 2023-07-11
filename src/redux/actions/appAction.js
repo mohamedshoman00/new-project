@@ -2,9 +2,12 @@ import axios from "axios";
 import {
   ALLDATA,
   BASEURL,
+  DOCTORAPPOINTMENT,
   GETADMINACCOUNT,
+  GETALLDEACTIVEDOCTORS,
   GETALLDOCTORS,
   GETALLPATIENTSADMIN,
+  GETAPPOINTMENT,
   GETDOCTORDATA,
   GETDOCTORTIMETABLE,
   GETDOCTORTIMETABLEADMIN,
@@ -16,6 +19,7 @@ import {
   TOGGLE,
   UPDATED,
 } from "../types/type";
+import { useState } from "react";
 
 export const changeDate = (date) => {
   const dateOfBirth = new Date(date);
@@ -129,6 +133,7 @@ export const getAllDoctors = () => {
     const res = await axios.get(`/admin/getalldoctors`, {
       withCredentials: true,
     });
+    // console.log(res);
     disp({ type: GETALLDOCTORS, data: res.data });
   };
 };
@@ -203,8 +208,30 @@ export const updateDoctorTimeTableAdmin = (mobile, data) => {
       }
     );
     console.log(res);
-    console.log(data);
-    console.log(mobile);
     // disp({ type: GETDOCTORTIMETABLEADMIN, data: res.data });
+  };
+};
+export const getAllAppointments = (ele) => {
+  return async (disp) => {
+    const res = await axios.get(`/admin/getappointment/${ele}`, {
+      withCredentials: true,
+    });
+    disp({ type: GETAPPOINTMENT, data: res.data });
+  };
+};
+export const getDoctorAppointments = () => {
+  return async (disp) => {
+    const res = await axios.get(`/doctor/getappointment`, {
+      withCredentials: true,
+    });
+    disp({ type: DOCTORAPPOINTMENT, data: res.data });
+  };
+};
+export const getDactiveDoctors = () => {
+  return async (disp) => {
+    const res = await axios.get(`/admin/getalldoctorsdactive`, {
+      withCredentials: true,
+    });
+    disp({ type: GETALLDEACTIVEDOCTORS, data: res.data });
   };
 };

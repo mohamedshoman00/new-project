@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {
   getAdminAcc,
+  getAllAppointments,
   getAllDoctors,
   getAllPatientsAdmin,
 } from "../redux/actions/appAction";
@@ -53,9 +54,11 @@ const Admin = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAdminAcc());
-    // dispatch(getAllDoctors());
+    dispatch(getAllDoctors());
+    // dispatch(getAllAppointments(`01223330261`));
     // dispatch(getAllPatientsAdmin());
   }, []);
+  // console.log(`reload`);
   return (
     <>
       <div className="d-flex" style={{ position: "relative" }}>
