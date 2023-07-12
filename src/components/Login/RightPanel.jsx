@@ -38,8 +38,8 @@ const RightPanel = () => {
             color: "#444",
           }}
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, iure.
-          Error, eos! Atque quam magni vitae veritatis temporibus
+          {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, iure.
+          Error, eos! Atque quam magni vitae veritatis temporibus */}
         </p>
         <Button
           variant="info"

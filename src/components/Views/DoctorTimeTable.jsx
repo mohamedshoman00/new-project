@@ -23,21 +23,22 @@ const DoctorTimeTable = () => {
 
   useEffect(() => {
     dispatch(getAllDoctors());
-    dispatch(getDoctorTimeTableAdmin(data[`${curr}`]?.mobile));
+    dispatch(getDoctorTimeTableAdmin(data[curr]?.mobile));
     // dispatch(getDoctorTimeTableAdmin());
     // setCurrentDoctor({ ...data[`${curr}`] });
     // dispatch(getDoctorTimeTableAdmin(data[`${curr}`]?.mobile));
   }, []);
   // console.log(data);
   useEffect(() => {
-    dispatch(getDoctorTimeTableAdmin(data[`${curr}`]?.mobile));
+    dispatch(getDoctorTimeTableAdmin(data[curr]?.mobile));
     // console.log(curr);
-    setCurrentDoctor({ ...data[`${curr}`] });
+    setCurrentDoctor({ ...data[curr] });
   }, [data, curr]);
   useEffect(() => {
     // dispatch(getDoctorTimeTableAdmin(data[`${curr}`]?.mobile));
     console.log(curr);
     setCurrDoctorTimeTable({ ...currTime });
+    setdocdata({ ...currTime });
     if (Object.keys(currTime).length > 0) {
       setdocdata({
         ...currTime,
@@ -94,14 +95,14 @@ const DoctorTimeTable = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // console.log(docdata);
-    let updatedData = {};
+    let updateData = {};
     if (
       currTime.sat !== docdata.sat ||
       currTime.sattime.startTime !== docdata.sattime.startTime ||
       currTime.sattime.endTime !== docdata.sattime.endTime
     ) {
-      updatedData = {
-        ...updatedData,
+      updateData = {
+        ...updateData,
         sat: docdata.sat,
         sattime: { ...docdata.sattime },
       };
@@ -111,8 +112,8 @@ const DoctorTimeTable = () => {
       currTime.suntime.startTime !== docdata.suntime.startTime ||
       currTime.suntime.endTime !== docdata.suntime.endTime
     ) {
-      updatedData = {
-        ...updatedData,
+      updateData = {
+        ...updateData,
         sun: docdata.sun,
         suntime: { ...docdata.suntime },
       };
@@ -122,8 +123,8 @@ const DoctorTimeTable = () => {
       currTime.montime.startTime !== docdata.montime.startTime ||
       currTime.montime.endTime !== docdata.montime.endTime
     ) {
-      updatedData = {
-        ...updatedData,
+      updateData = {
+        ...updateData,
         mon: docdata.mon,
         montime: { ...docdata.montime },
       };
@@ -133,8 +134,8 @@ const DoctorTimeTable = () => {
       currTime?.tuetime?.startTime !== docdata?.tuetime?.startTime ||
       currTime?.tuetime?.endTime !== docdata?.tuetime?.endTime
     ) {
-      updatedData = {
-        ...updatedData,
+      updateData = {
+        ...updateData,
         tue: docdata.tue,
         tuetime: { ...docdata.tuetime },
       };
@@ -144,8 +145,8 @@ const DoctorTimeTable = () => {
       currTime?.wedtime?.startTime !== docdata?.wedtime?.startTime ||
       currTime?.wedtime?.endTime !== docdata?.wedtime?.endTime
     ) {
-      updatedData = {
-        ...updatedData,
+      updateData = {
+        ...updateData,
         wed: docdata?.wed,
         wedtime: { ...docdata?.wedtime },
       };
@@ -155,8 +156,8 @@ const DoctorTimeTable = () => {
       currTime.thutime.startTime !== docdata.thutime.startTime ||
       currTime.thutime.endTime !== docdata.thutime.endTime
     ) {
-      updatedData = {
-        ...updatedData,
+      updateData = {
+        ...updateData,
         thu: docdata.thu,
         thutime: { ...docdata.thutime },
       };
@@ -166,20 +167,24 @@ const DoctorTimeTable = () => {
       currTime.fritime.startTime !== docdata.fritime.startTime ||
       currTime.fritime.endTime !== docdata.fritime.endTime
     ) {
-      updatedData = {
-        ...updatedData,
+      updateData = {
+        ...updateData,
         fri: docdata.fri,
-        fritime: { ...docdata.fritime },
+        fritime: {
+          startTime: docdata.fritime.startTime,
+          endTime: docdata.fritime.endTime,
+        },
       };
     }
-    // console.log(updatedData);
-    if (Object.keys(updatedData).length > 0) {
-      dispatch(updateDoctorTimeTableAdmin(currentDoctor.mobile, updatedData));
-      // dispatch(getAllDoctors());
-      // dispatch(getDoctorTimeTableAdmin(currentDoctor?.mobile));
-      dispatch(getDoctorTimeTableAdmin(data[`${curr}`]?.mobile));
-      console.log(currentDoctor.mobile);
-    }
+    // console.log(updateData);
+    // if (Object.keys(updateData).length > 0) {
+    dispatch(updateDoctorTimeTableAdmin(data[curr].mobile, updateData));
+    // dispatch(getAllDoctors());
+    // dispatch(getDoctorTimeTableAdmin(currentDoctor?.mobile));
+    dispatch(getDoctorTimeTableAdmin(data[curr]?.mobile));
+    console.log(currentDoctor.mobile);
+    // }
+    console.log(data[curr].mobile);
 
     // handleSubmit.bind();
   };

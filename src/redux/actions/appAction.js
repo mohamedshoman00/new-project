@@ -208,7 +208,7 @@ export const updateDoctorTimeTableAdmin = (mobile, data) => {
       }
     );
     console.log(res);
-    // disp({ type: GETDOCTORTIMETABLEADMIN, data: res.data });
+    disp({ type: UPDATED });
   };
 };
 export const getAllAppointments = (ele) => {

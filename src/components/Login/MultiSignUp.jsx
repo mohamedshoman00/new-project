@@ -202,7 +202,7 @@ const MultiSignUp = () => {
     }),
   ];
 
-  const submitHandler = (values, onSubmitProps, { resetForm }) => {
+  const submitHandler = (values, onSubmitProps) => {
     if (step !== formTitles.length - 1) {
       onSubmitProps.setSubmitting(false);
       setStep((curr) => curr + 1);
@@ -229,7 +229,7 @@ const MultiSignUp = () => {
           progress: undefined,
           theme: "colored",
         });
-        resetForm();
+        // resetForm();
         setTimeout(() => {
           dispatch(toggleLogin());
         }, 1500);
